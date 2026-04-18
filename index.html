@@ -38,108 +38,101 @@
 			position: sticky;
 			top: 0;
 			z-index: 1000;
-			padding: 18px 20px 0;
-			backdrop-filter: blur(10px);
-			-webkit-backdrop-filter: blur(10px);
+			padding: 0;
+			background: rgba(248, 248, 250, 0.72);
+			border-bottom: 1px solid rgba(22, 27, 26, 0.1);
+			backdrop-filter: saturate(180%) blur(14px);
+			-webkit-backdrop-filter: saturate(180%) blur(14px);
 		}
 
 		.top-nav {
 			max-width: 1100px;
 			margin: 0 auto;
-			background: var(--surface);
-			border: 1px solid var(--line);
-			border-radius: var(--radius);
-			box-shadow: var(--shadow);
-			backdrop-filter: blur(12px) saturate(115%);
-			-webkit-backdrop-filter: blur(12px) saturate(115%);
+			background: transparent;
+			border: 0;
+			border-radius: 0;
+			box-shadow: none;
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			gap: 16px;
-			padding: 10px 14px;
+			gap: 12px;
+			min-height: 52px;
+			padding: 0 18px;
 			animation: navSlide 620ms cubic-bezier(.2, .7, 0, 1);
 		}
 
 		.brand {
 			display: inline-flex;
 			align-items: center;
-			gap: 10px;
+			gap: 8px;
 			color: var(--text);
 			text-decoration: none;
 			letter-spacing: 0.01em;
+			white-space: nowrap;
 		}
 
 		.brand img {
-			width: 42px;
-			height: 42px;
-			border-radius: 10px;
+			width: 30px;
+			height: 30px;
+			border-radius: 8px;
 			object-fit: cover;
-			border: 1px solid var(--line);
+			border: 1px solid rgba(0, 0, 0, 0.08);
 		}
 
 		.brand strong {
-			font-family: "Cormorant Garamond", Georgia, serif;
-			font-size: 1.34rem;
-			font-weight: 700;
+			font-family: "Manrope", "Segoe UI", sans-serif;
+			font-size: 0.92rem;
+			font-weight: 600;
 			line-height: 1;
 			display: block;
-			letter-spacing: 0.02em;
+			letter-spacing: 0.01em;
 		}
 
 		.brand span {
-			font-size: 0.75rem;
+			font-size: 0.68rem;
 			color: var(--muted);
 			display: block;
-			margin-top: 3px;
+			margin-top: 1px;
+		}
+
+		.menu-wrap {
+			margin-left: auto;
 		}
 
 		.menu {
 			display: flex;
 			align-items: center;
-			gap: 6px;
+			gap: 2px;
 			list-style: none;
 			position: relative;
-			padding: 4px;
-			border-radius: 14px;
-		}
-
-		.menu-indicator {
-			position: absolute;
-			top: 0;
-			left: 0;
-			height: 40px;
-			width: 0;
-			border-radius: 12px;
-			background: linear-gradient(120deg, var(--accent), #0f4f46 72%);
-			box-shadow: 0 8px 18px rgba(20, 95, 84, 0.24);
-			opacity: 0;
-			z-index: 0;
-			transform: translate(0, 0);
-			transition: transform 320ms cubic-bezier(.2, .7, 0, 1), width 320ms cubic-bezier(.2, .7, 0, 1), opacity 180ms ease;
+			padding: 0;
+			border-radius: 0;
 		}
 
 		.menu a {
-			color: var(--muted);
+			color: #2b2b2f;
 			text-decoration: none;
-			font-size: 0.92rem;
-			padding: 10px 14px;
-			border-radius: 12px;
+			font-size: 0.82rem;
+			font-weight: 500;
+			padding: 16px 12px;
+			border-radius: 8px;
 			position: relative;
 			z-index: 1;
-			transition: color 0.24s ease, background-color 0.24s ease;
+			transition: color 0.2s ease, opacity 0.2s ease;
 		}
 
 		.menu a:hover,
 		.menu a:focus-visible {
-			color: var(--text);
-			background: rgba(29, 35, 33, 0.06);
+			color: #000000;
+			opacity: 0.82;
+			background: transparent;
 			outline: none;
 		}
 
 		.menu .active {
-			color: #ffffff;
+			color: #111111;
 			background: transparent;
-			font-weight: 600;
+			font-weight: 700;
 		}
 
 		.cta {
@@ -787,7 +780,7 @@
 
 		.dealership-banner {
 			width: 100%;
-			margin: 36px 0 28px;
+			margin: 36px 0 48px;
 			padding: 0;
 		}
 
@@ -1611,6 +1604,8 @@
 			.top-nav {
 				position: relative;
 				flex-wrap: wrap;
+				padding: 8px 12px;
+				min-height: auto;
 			}
 
 			.menu-toggle {
@@ -1625,6 +1620,7 @@
 				border-top: 1px solid var(--line);
 				margin-top: 10px;
 				padding-top: 10px;
+				margin-left: 0;
 			}
 
 			.menu {
@@ -1634,17 +1630,13 @@
 				padding: 0;
 			}
 
-			.menu-indicator {
-				display: none;
-			}
-
 			.menu .active {
-				background: linear-gradient(120deg, var(--accent), #0f4f46 72%);
+				background: transparent;
 			}
 
-			.menu a,
-			.cta {
+			.menu a {
 				width: 100%;
+				padding: 10px 12px;
 			}
 
 			#menu-toggle:checked ~ .menu-wrap {
@@ -1705,11 +1697,12 @@
 			}
 
 			.banner-content {
-				grid-template-columns: 1fr;
+				grid-template-columns: minmax(0, 1.1fr) minmax(220px, 0.9fr);
+				gap: 18px;
 			}
 
 			.banner-visual {
-				min-height: 260px;
+				min-height: 220px;
 			}
 
 			.banner-car img {
@@ -1737,13 +1730,13 @@
 
 		@media (max-width: 600px) {
 			.site-header {
-				padding: 10px 10px 0;
+				padding: 0;
 			}
 
 			.top-nav {
 				gap: 10px;
-				padding: 10px;
-				border-radius: 14px;
+				padding: 8px 10px;
+				border-radius: 0;
 			}
 
 			.brand {
@@ -1752,13 +1745,13 @@
 			}
 
 			.brand img {
-				width: 36px;
-				height: 36px;
+				width: 28px;
+				height: 28px;
 				border-radius: 9px;
 			}
 
 			.brand strong {
-				font-size: 1.08rem;
+				font-size: 0.86rem;
 			}
 
 			.brand span {
@@ -1829,14 +1822,44 @@
 			}
 
 			.banner-panel {
-				padding-top: 22px;
-				padding-bottom: 180px;
+				padding-top: 18px;
+				padding-bottom: 190px;
 			}
 
 			.banner-inner,
 			.banner-content {
 				padding-left: 16px;
 				padding-right: 16px;
+			}
+
+			.banner-content {
+				grid-template-columns: minmax(0, 1.16fr) minmax(120px, 0.84fr);
+				gap: 12px;
+				align-items: center;
+			}
+
+			.banner-copy {
+				max-width: none;
+			}
+
+			.banner-copy h2 {
+				font-size: clamp(1.55rem, 7vw, 2.1rem);
+				line-height: 1.02;
+			}
+
+			.banner-copy p {
+				font-size: 0.86rem;
+				line-height: 1.45;
+				max-width: none;
+				margin-top: 10px;
+			}
+
+			.banner-visual {
+				min-height: 150px;
+			}
+
+			.banner-car {
+				width: min(100%, 260px);
 			}
 
 			.banner-search {
@@ -1936,6 +1959,29 @@
 				min-height: 300px;
 			}
 
+			.banner-content {
+				grid-template-columns: minmax(0, 1.18fr) minmax(104px, 0.82fr);
+				gap: 10px;
+			}
+
+			.banner-copy h2 {
+				font-size: clamp(1.42rem, 7.8vw, 1.9rem);
+			}
+
+			.banner-copy p {
+				font-size: 0.8rem;
+				line-height: 1.4;
+				margin-top: 8px;
+			}
+
+			.banner-visual {
+				min-height: 128px;
+			}
+
+			.banner-car {
+				width: min(100%, 220px);
+			}
+
 			.package-card {
 				flex-basis: calc(100% - 10px);
 			}
@@ -2002,15 +2048,12 @@
 
 			<div class="menu-wrap">
 				<ul class="menu">
-					<span class="menu-indicator" aria-hidden="true"></span>
 					<li><a class="active" href="#">Home</a></li>
 					<li><a href="#tour">Tour</a></li>
 					<li><a href="#rental">Rental</a></li>
 					<li><a href="#review">Review</a></li>
 				</ul>
 			</div>
-
-			<a class="cta" href="#booking">Book Now</a>
 		</nav>
 	</header>
 
@@ -2237,10 +2280,6 @@
 					<span class="banner-eyebrow">Premium Travel &amp; Rental</span>
 					<h2>Drive your Langkawi journey with style.</h2>
 					<p>Choose a polished travel experience with premium cars, smooth booking, and curated island packages designed for comfort and flexibility.</p>
-					<div class="banner-actions">
-						<a class="banner-button" href="#booking">Book Now</a>
-						<span class="banner-note">Luxury service. Local support. Fast confirmation.</span>
-					</div>
 				</div>
 
 				<div class="banner-visual">
@@ -2271,7 +2310,7 @@
 					<label for="return-datetime">Return Date &amp; Time</label>
 					<input id="return-datetime" name="return-datetime" type="datetime-local" />
 				</div>
-				<button class="search-submit" type="submit">Search</button>
+				<button class="search-submit" type="submit">Book Now</button>
 			</form>
 		</div>
 	</section>
@@ -2434,6 +2473,9 @@
 		const arrowButtons = document.querySelectorAll(".carousel-arrow");
 		const bannerCarImage = document.getElementById("bannerCarImage");
 		const carModelSelect = document.getElementById("car-model");
+		const pickupDateTimeInput = document.getElementById("pickup-datetime");
+		const returnDateTimeInput = document.getElementById("return-datetime");
+		const bannerSearchForm = document.querySelector(".banner-search");
 		const packageModal = document.getElementById("packageModal");
 		const modalTitle = document.getElementById("modalPackageTitle");
 		const modalMeta = document.getElementById("modalPackageMeta");
@@ -2750,35 +2792,42 @@
 			});
 		}
 
+		if (bannerSearchForm && carModelSelect && pickupDateTimeInput && returnDateTimeInput) {
+			bannerSearchForm.addEventListener("submit", (event) => {
+				event.preventDefault();
+
+				const selectedModel = carModelSelect.options[carModelSelect.selectedIndex]?.text || "Car";
+				const pickupValue = pickupDateTimeInput.value;
+				const returnValue = returnDateTimeInput.value;
+
+				if (!pickupValue || !returnValue) {
+					alert("Sila isi pickup dan return date/time dahulu.");
+					return;
+				}
+
+				const pickupText = new Date(pickupValue).toLocaleString("en-MY", {
+					dateStyle: "medium",
+					timeStyle: "short"
+				});
+				const returnText = new Date(returnValue).toLocaleString("en-MY", {
+					dateStyle: "medium",
+					timeStyle: "short"
+				});
+
+				const whatsappMessage = [
+					"Hi Langkawi by Ammar, saya nak book rental ini:",
+					`Car Model: ${selectedModel}`,
+					`Pickup: ${pickupText}`,
+					`Return: ${returnText}`
+				].join("\n");
+
+				const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+				window.open(whatsappUrl, "_blank", "noopener");
+			});
+		}
+
 		const navMenuLinks = document.querySelectorAll(".menu a");
 		const navMenu = document.querySelector(".menu");
-		const navIndicator = document.querySelector(".menu-indicator");
-
-		const updateMenuIndicator = () => {
-			if (!navMenu || !navIndicator || window.innerWidth <= 900) {
-				if (navIndicator) {
-					navIndicator.style.opacity = "0";
-				}
-				return;
-			}
-
-			const activeLink = navMenu.querySelector("a.active");
-			if (!activeLink) {
-				navIndicator.style.opacity = "0";
-				return;
-			}
-
-			const menuRect = navMenu.getBoundingClientRect();
-			const linkRect = activeLink.getBoundingClientRect();
-			const x = linkRect.left - menuRect.left;
-			const y = linkRect.top - menuRect.top;
-
-			navIndicator.style.width = `${linkRect.width}px`;
-			navIndicator.style.height = `${linkRect.height}px`;
-			navIndicator.style.transform = `translate(${x}px, ${y}px)`;
-			navIndicator.style.opacity = "1";
-		};
-
 		const setActiveMenuLink = (targetHash = "") => {
 			if (!navMenuLinks.length) {
 				return;
@@ -2802,8 +2851,6 @@
 			if (matchedLink) {
 				matchedLink.classList.add("active");
 			}
-
-			window.requestAnimationFrame(updateMenuIndicator);
 		};
 
 		navMenuLinks.forEach((link) => {
@@ -2815,10 +2862,6 @@
 
 		window.addEventListener("hashchange", () => {
 			setActiveMenuLink(window.location.hash);
-		});
-
-		window.addEventListener("resize", () => {
-			window.requestAnimationFrame(updateMenuIndicator);
 		});
 
 		setActiveMenuLink(window.location.hash);
