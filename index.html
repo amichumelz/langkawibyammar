@@ -1873,13 +1873,14 @@
 			}
 
 			.banner-content {
-				grid-template-columns: minmax(0, 1.16fr) minmax(120px, 0.84fr);
-				gap: 12px;
-				align-items: center;
+				grid-template-columns: 1fr;
+				gap: 14px;
+				align-items: start;
 			}
 
 			.banner-copy {
 				max-width: none;
+				order: 1;
 			}
 
 			.banner-copy h2 {
@@ -1896,10 +1897,12 @@
 
 			.banner-visual {
 				min-height: 150px;
+				order: 2;
+				justify-content: flex-start;
 			}
 
 			.banner-car {
-				width: min(100%, 260px);
+				width: min(100%, 280px);
 			}
 
 			.banner-search {
@@ -1965,13 +1968,26 @@
 			}
 
 			.reviews-grid {
-				grid-template-columns: 1fr;
+				display: flex;
+				grid-template-columns: none;
 				gap: 14px;
+				overflow-x: auto;
+				padding-bottom: 8px;
+				scroll-snap-type: x proximity;
+				-webkit-overflow-scrolling: touch;
+				scrollbar-width: none;
+			}
+
+			.reviews-grid::-webkit-scrollbar {
+				display: none;
 			}
 
 			.review-card {
+				flex: 0 0 86%;
+				min-width: 260px;
 				padding: 16px;
 				border-radius: 16px;
+				scroll-snap-align: start;
 			}
 
 			.gallery-wrapper {
@@ -2030,8 +2046,8 @@
 			}
 
 			.banner-content {
-				grid-template-columns: minmax(0, 1.18fr) minmax(104px, 0.82fr);
-				gap: 10px;
+				grid-template-columns: 1fr;
+				gap: 12px;
 			}
 
 			.banner-copy h2 {
@@ -2046,14 +2062,20 @@
 
 			.banner-visual {
 				min-height: 128px;
+				justify-content: flex-start;
 			}
 
 			.banner-car {
-				width: min(100%, 220px);
+				width: min(100%, 240px);
 			}
 
 			.package-card {
 				flex-basis: calc(100% - 10px);
+			}
+
+			.review-card {
+				flex-basis: 88%;
+				min-width: 240px;
 			}
 
 			.floating-ws {
