@@ -1,0 +1,2827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Langkawi by Ammar</title>
+	<style>
+		@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap");
+
+		:root {
+			--bg: #f3f0e8;
+			--surface: rgba(255, 255, 255, 0.72);
+			--text: #1e2422;
+			--muted: #5d6462;
+			--line: rgba(30, 36, 34, 0.12);
+			--accent: #145f54;
+			--accent-2: #b89254;
+			--accent-soft: rgba(184, 146, 84, 0.16);
+			--radius: 16px;
+			--shadow: 0 16px 34px rgba(22, 27, 26, 0.1);
+		}
+
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			font-family: "Manrope", "Segoe UI", sans-serif;
+			min-height: 100vh;
+			color: var(--text);
+			background: #ffffff;
+			animation: pageFade 550ms ease;
+		}
+
+		.site-header {
+			position: sticky;
+			top: 0;
+			z-index: 1000;
+			padding: 18px 20px 0;
+			backdrop-filter: blur(10px);
+			-webkit-backdrop-filter: blur(10px);
+		}
+
+		.top-nav {
+			max-width: 1100px;
+			margin: 0 auto;
+			background: var(--surface);
+			border: 1px solid var(--line);
+			border-radius: var(--radius);
+			box-shadow: var(--shadow);
+			backdrop-filter: blur(12px) saturate(115%);
+			-webkit-backdrop-filter: blur(12px) saturate(115%);
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 16px;
+			padding: 10px 14px;
+			animation: navSlide 620ms cubic-bezier(.2, .7, 0, 1);
+		}
+
+		.brand {
+			display: inline-flex;
+			align-items: center;
+			gap: 10px;
+			color: var(--text);
+			text-decoration: none;
+			letter-spacing: 0.01em;
+		}
+
+		.brand img {
+			width: 42px;
+			height: 42px;
+			border-radius: 10px;
+			object-fit: cover;
+			border: 1px solid var(--line);
+		}
+
+		.brand strong {
+			font-family: "Cormorant Garamond", Georgia, serif;
+			font-size: 1.34rem;
+			font-weight: 700;
+			line-height: 1;
+			display: block;
+			letter-spacing: 0.02em;
+		}
+
+		.brand span {
+			font-size: 0.75rem;
+			color: var(--muted);
+			display: block;
+			margin-top: 3px;
+		}
+
+		.menu {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			list-style: none;
+			position: relative;
+			padding: 4px;
+			border-radius: 14px;
+		}
+
+		.menu-indicator {
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 40px;
+			width: 0;
+			border-radius: 12px;
+			background: linear-gradient(120deg, var(--accent), #0f4f46 72%);
+			box-shadow: 0 8px 18px rgba(20, 95, 84, 0.24);
+			opacity: 0;
+			z-index: 0;
+			transform: translate(0, 0);
+			transition: transform 320ms cubic-bezier(.2, .7, 0, 1), width 320ms cubic-bezier(.2, .7, 0, 1), opacity 180ms ease;
+		}
+
+		.menu a {
+			color: var(--muted);
+			text-decoration: none;
+			font-size: 0.92rem;
+			padding: 10px 14px;
+			border-radius: 12px;
+			position: relative;
+			z-index: 1;
+			transition: color 0.24s ease, background-color 0.24s ease;
+		}
+
+		.menu a:hover,
+		.menu a:focus-visible {
+			color: var(--text);
+			background: rgba(29, 35, 33, 0.06);
+			outline: none;
+		}
+
+		.menu .active {
+			color: #ffffff;
+			background: transparent;
+			font-weight: 600;
+		}
+
+		.cta {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			text-decoration: none;
+			color: #ffffff;
+			background: linear-gradient(120deg, var(--accent), #0f4f46 55%, #b89254 130%);
+			font-weight: 600;
+			font-size: 0.9rem;
+			border-radius: 12px;
+			padding: 10px 16px;
+			border: 1px solid rgba(255, 255, 255, 0.22);
+			transition: transform 0.2s ease, box-shadow 0.2s ease;
+			white-space: nowrap;
+		}
+
+		.cta:hover,
+		.cta:focus-visible {
+			transform: translateY(-1px);
+			box-shadow: 0 10px 22px rgba(20, 95, 84, 0.32);
+			outline: none;
+		}
+
+		.menu-toggle {
+			display: none;
+			background: transparent;
+			border: 1px solid var(--line);
+			color: var(--text);
+			border-radius: 10px;
+			width: 42px;
+			height: 42px;
+			cursor: pointer;
+		}
+
+		.menu-toggle span,
+		.menu-toggle span::before,
+		.menu-toggle span::after {
+			display: block;
+			width: 18px;
+			height: 2px;
+			margin: 0 auto;
+			background: currentColor;
+			border-radius: 99px;
+			position: relative;
+			transition: 0.2s ease;
+			content: "";
+		}
+
+		.menu-toggle span::before {
+			position: absolute;
+			top: -6px;
+			left: 0;
+		}
+
+		.menu-toggle span::after {
+			position: absolute;
+			top: 6px;
+			left: 0;
+		}
+
+		.hero {
+			width: 100%;
+			margin: 0 0 70px;
+			padding: 44px 0 56px;
+			min-height: 430px;
+			position: relative;
+			overflow: hidden;
+			box-shadow: 0 10px 24px rgba(22, 27, 26, 0.04);
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+		}
+
+		.hero::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			z-index: 1;
+			background:
+				linear-gradient(to top, rgba(10, 16, 15, 0.78) 10%, rgba(10, 18, 16, 0.36) 50%, rgba(10, 18, 16, 0.06) 100%),
+				linear-gradient(to right, rgba(0, 0, 0, 0.28), transparent 62%),
+				radial-gradient(circle at 85% 18%, rgba(184, 146, 84, 0.16), transparent 38%);
+		}
+
+		.hero-slides,
+		.hero-slide {
+			position: absolute;
+			inset: 0;
+		}
+
+		.hero-slide {
+			background-size: cover;
+			background-position: center;
+			opacity: 0;
+			transform: scale(1.03);
+			transition: opacity 900ms ease;
+		}
+
+		.hero-slide.is-active {
+			opacity: 1;
+		}
+
+		.hero-content {
+			position: relative;
+			z-index: 2;
+			max-width: 1100px;
+			width: 100%;
+			margin: 0 auto;
+			text-align: left;
+			padding: 0 20px;
+		}
+
+		.hero-badge {
+			display: inline-flex;
+			align-items: center;
+			padding: 6px 12px;
+			border-radius: 999px;
+			font-size: 0.72rem;
+			font-weight: 600;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			color: #f2e3c6;
+			border: 1px solid rgba(242, 227, 198, 0.45);
+			background: rgba(24, 33, 30, 0.45);
+		}
+
+		.hero h1 {
+			font-family: "Cormorant Garamond", Georgia, serif;
+			font-size: clamp(1.8rem, 5vw, 3rem);
+			line-height: 1.15;
+			max-width: 18ch;
+			color: #ffffff;
+			text-shadow: 0 8px 22px rgba(0, 0, 0, 0.42);
+			margin-top: 10px;
+		}
+
+		.hero p {
+			margin-top: 14px;
+			color: rgba(255, 255, 255, 0.92);
+			max-width: 56ch;
+			line-height: 1.6;
+			text-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+		}
+
+		.hero-actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+			margin-top: 22px;
+			justify-content: flex-start;
+		}
+
+		.hero-btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			text-decoration: none;
+			font-size: 0.92rem;
+			font-weight: 600;
+			padding: 10px 16px;
+			border-radius: 12px;
+			border: 1px solid transparent;
+			transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+		}
+
+		.hero-btn.primary {
+			background: linear-gradient(120deg, var(--accent), #0f4f46 60%, #b89254 140%);
+			color: #ffffff;
+			border-color: rgba(255, 255, 255, 0.24);
+		}
+
+		.hero-btn.primary:hover,
+		.hero-btn.primary:focus-visible {
+			transform: translateY(-1px);
+			background: linear-gradient(120deg, #13564d, #0d443d 60%, #a47f45 140%);
+			outline: none;
+		}
+
+		.hero-btn.ghost {
+			background: rgba(255, 255, 255, 0.14);
+			color: #ffffff;
+			border-color: rgba(255, 255, 255, 0.5);
+			backdrop-filter: blur(4px);
+			-webkit-backdrop-filter: blur(4px);
+		}
+
+		.hero-btn.ghost:hover,
+		.hero-btn.ghost:focus-visible {
+			transform: translateY(-1px);
+			background: rgba(255, 255, 255, 0.22);
+			outline: none;
+		}
+
+		.why-us {
+			max-width: 1100px;
+			margin: 28px auto 78px;
+			padding: 0 20px;
+		}
+
+		.why-us-panel {
+			position: relative;
+			background: #ffffff;
+			border: none;
+			border-radius: 6px;
+			padding: 68px 52px 56px;
+			box-shadow: 0 10px 24px rgba(20, 28, 26, 0.06);
+			overflow: hidden;
+		}
+
+		.why-us-panel::before {
+			content: "";
+			position: absolute;
+			left: 18px;
+			top: 52px;
+			bottom: 52px;
+			width: 20px;
+			background-image: radial-gradient(circle, rgba(255, 125, 70, 0.85) 1.5px, transparent 1.5px);
+			background-size: 8px 12px;
+			background-position: center top;
+		}
+
+		.why-us-head {
+			max-width: 640px;
+			margin: 0 auto;
+			text-align: center;
+		}
+
+		.why-us-head h2 {
+			font-family: "Cormorant Garamond", Georgia, serif;
+			font-size: clamp(2rem, 3vw, 3rem);
+			line-height: 1.2;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
+		.why-us-head p {
+			margin-top: 10px;
+			max-width: 56ch;
+			color: var(--muted);
+			line-height: 1.7;
+		}
+
+		.why-us-grid {
+			margin-top: 42px;
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 26px;
+		}
+
+		.why-card {
+			padding: 0 10px;
+			text-align: center;
+		}
+
+		.why-icon {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 74px;
+			height: 74px;
+			border-radius: 50%;
+			border: 1px solid #e4dfd2;
+			background: linear-gradient(180deg, #ffffff 0%, #f9f8f4 100%);
+			box-shadow: 0 8px 16px rgba(20, 28, 26, 0.08);
+		}
+
+		.why-icon svg {
+			width: 38px;
+			height: 38px;
+			stroke: #121614;
+			fill: none;
+			stroke-width: 1.8;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+		}
+
+		.why-icon svg .accent {
+			stroke: #ff8a5a;
+		}
+
+		.why-card h3 {
+			font-size: 1.08rem;
+			margin-top: 14px;
+		}
+
+		.why-card p {
+			margin-top: 8px;
+			color: var(--muted);
+			line-height: 1.55;
+			font-size: 0.9rem;
+		}
+
+		.packages-section {
+			max-width: 1100px;
+			margin: 0 auto 90px;
+			padding: 0 20px;
+		}
+
+		.packages-head {
+			display: flex;
+			align-items: flex-end;
+			justify-content: space-between;
+			gap: 16px;
+			margin-bottom: 16px;
+		}
+
+		.packages-head h2 {
+			font-family: "Cormorant Garamond", Georgia, serif;
+			font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+			line-height: 1.2;
+		}
+
+		.packages-head p {
+			color: var(--muted);
+			max-width: 58ch;
+			line-height: 1.6;
+		}
+
+		.carousel-shell {
+			position: relative;
+			overflow: hidden;
+		}
+
+		.packages-carousel {
+			display: flex;
+			gap: 16px;
+			overflow-x: auto;
+			scroll-behavior: smooth;
+			scrollbar-width: none;
+			padding: 6px 4px 10px;
+		}
+
+		.packages-carousel::-webkit-scrollbar {
+			display: none;
+		}
+
+		.package-card {
+			flex: 0 0 248px;
+			background: #ffffff;
+			border: none;
+			border-radius: 16px;
+			box-shadow: 0 10px 22px rgba(24, 29, 28, 0.08);
+			overflow: hidden;
+		}
+
+		.package-image {
+			position: relative;
+			height: 150px;
+		}
+
+		.package-image img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+
+		.image-dots {
+			position: absolute;
+			left: 50%;
+			bottom: 10px;
+			transform: translateX(-50%);
+			display: inline-flex;
+			gap: 6px;
+			padding: 4px 8px;
+			border-radius: 999px;
+			background: rgba(9, 13, 12, 0.34);
+		}
+
+		.image-dots i {
+			width: 6px;
+			height: 6px;
+			border-radius: 50%;
+			background: rgba(255, 255, 255, 0.62);
+		}
+
+		.image-dots i.active {
+			background: #ffffff;
+		}
+
+		.package-body {
+			padding: 14px;
+		}
+
+		.package-meta {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 10px;
+			font-size: 0.79rem;
+			color: #5c6361;
+		}
+
+		.rating {
+			color: #a47f45;
+			font-weight: 700;
+		}
+
+		.package-title {
+			font-size: 1rem;
+			margin-top: 10px;
+			line-height: 1.35;
+		}
+
+		.package-list {
+			margin-top: 10px;
+			padding-left: 18px;
+			color: #66706d;
+			font-size: 0.82rem;
+			line-height: 1.5;
+		}
+
+		.price-wrap {
+			margin-top: 12px;
+			display: flex;
+			align-items: baseline;
+			gap: 8px;
+		}
+
+		.price-old {
+			font-size: 0.8rem;
+			color: #8c9391;
+			text-decoration: line-through;
+		}
+
+		.price-new {
+			font-size: 1.08rem;
+			font-weight: 800;
+			color: #192322;
+		}
+
+		.request-btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			margin-top: 12px;
+			padding: 10px 12px;
+			border-radius: 10px;
+			border: 0;
+			background: linear-gradient(120deg, var(--accent), #0f4f46 55%, #b89254 130%);
+			color: #ffffff;
+			font-size: 0.86rem;
+			font-weight: 700;
+			text-decoration: none;
+			cursor: pointer;
+			letter-spacing: 0.01em;
+			box-shadow: 0 8px 18px rgba(20, 95, 84, 0.28);
+		}
+
+		.request-btn:hover,
+		.request-btn:focus-visible {
+			filter: brightness(1.04);
+			outline: none;
+		}
+
+		.package-modal {
+			position: fixed;
+			inset: 0;
+			display: none;
+			align-items: center;
+			justify-content: center;
+			padding: 20px;
+			z-index: 2100;
+		}
+
+		.package-modal.is-open {
+			display: flex;
+		}
+
+		.package-modal-backdrop {
+			position: absolute;
+			inset: 0;
+			background: rgba(8, 12, 11, 0.54);
+			backdrop-filter: blur(2px);
+			-webkit-backdrop-filter: blur(2px);
+		}
+
+		.package-modal-dialog {
+			position: relative;
+			z-index: 1;
+			width: min(680px, 100%);
+			max-height: min(86vh, 760px);
+			overflow-y: auto;
+			background: #ffffff;
+			border-radius: 16px;
+			border: none;
+			box-shadow: 0 24px 54px rgba(18, 24, 22, 0.22);
+			padding: 26px;
+		}
+
+		.modal-close {
+			position: absolute;
+			top: 12px;
+			right: 12px;
+			width: 34px;
+			height: 34px;
+			border: 1px solid #e4e0d6;
+			border-radius: 50%;
+			background: #ffffff;
+			color: #202725;
+			font-size: 1.1rem;
+			line-height: 1;
+			cursor: pointer;
+		}
+
+		.modal-head h3 {
+			font-family: "Cormorant Garamond", Georgia, serif;
+			font-size: clamp(1.8rem, 3vw, 2.4rem);
+			line-height: 1.1;
+		}
+
+		.modal-meta {
+			margin-top: 8px;
+			font-size: 0.92rem;
+			color: #5d6462;
+		}
+
+		.modal-list {
+			margin-top: 14px;
+			padding-left: 20px;
+			line-height: 1.6;
+			color: #525b59;
+		}
+
+		.modal-price {
+			margin-top: 18px;
+			padding: 12px 14px;
+			border-radius: 12px;
+			background: #f8f6f1;
+			border: 1px solid #ece8df;
+			display: flex;
+			align-items: baseline;
+			justify-content: space-between;
+			gap: 10px;
+		}
+
+		.modal-price span {
+			font-size: 0.8rem;
+			font-weight: 700;
+			letter-spacing: 0.07em;
+			text-transform: uppercase;
+			color: #676f6d;
+		}
+
+		.modal-price strong {
+			font-size: 1.36rem;
+			color: #171d1b;
+		}
+
+		.modal-booking {
+			margin-top: 20px;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 12px;
+		}
+
+		.modal-field {
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+		}
+
+		.modal-field label {
+			font-size: 0.74rem;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			color: #666d6b;
+		}
+
+		.modal-field input {
+			height: 44px;
+			padding: 0 12px;
+			border-radius: 10px;
+			border: 1px solid #e4e0d6;
+			font: inherit;
+			outline: none;
+		}
+
+		.modal-field select {
+			height: 44px;
+			padding: 0 12px;
+			border-radius: 10px;
+			border: 1px solid #e4e0d6;
+			font: inherit;
+			outline: none;
+			background: #ffffff;
+		}
+
+		.modal-field input:focus,
+		.modal-field select:focus {
+			border-color: rgba(20, 95, 84, 0.5);
+			box-shadow: 0 0 0 3px rgba(20, 95, 84, 0.1);
+		}
+
+		.modal-field.full {
+			grid-column: 1 / -1;
+		}
+
+		.modal-actions {
+			grid-column: 1 / -1;
+			display: flex;
+			justify-content: flex-end;
+			margin-top: 4px;
+		}
+
+		.modal-submit {
+			height: 44px;
+			padding: 0 20px;
+			border: 0;
+			border-radius: 12px;
+			background: linear-gradient(120deg, var(--accent), #0f4f46 60%, #b89254 140%);
+			color: #ffffff;
+			font: inherit;
+			font-weight: 700;
+			cursor: pointer;
+		}
+
+		.carousel-arrow {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			z-index: 5;
+			width: 40px;
+			height: 40px;
+			border-radius: 999px;
+			border: 1px solid rgba(18, 24, 22, 0.16);
+			background: rgba(255, 255, 255, 0.95);
+			box-shadow: 0 8px 18px rgba(18, 24, 22, 0.16);
+			font-size: 1.2rem;
+			line-height: 1;
+			cursor: pointer;
+		}
+
+		.carousel-arrow.left {
+			left: 6px;
+		}
+
+		.carousel-arrow.right {
+			right: 6px;
+		}
+
+		.dealership-banner {
+			width: 100%;
+			margin: 36px 0 28px;
+			padding: 0;
+		}
+
+		.banner-panel {
+			position: relative;
+			overflow: hidden;
+			min-height: 520px;
+			padding: 44px 0 156px;
+			background: linear-gradient(180deg, #ffffff 0%, #fbfaf7 100%);
+			box-shadow: 0 12px 30px rgba(18, 24, 22, 0.06);
+		}
+
+		.banner-inner {
+			max-width: 1100px;
+			margin: 0 auto;
+			padding: 0 20px;
+		}
+
+		.banner-watermark {
+			position: absolute;
+			top: 50%;
+			left: 0;
+			right: 0;
+			width: 100%;
+			transform: translateY(-50%);
+			text-align: center;
+			font-family: "Cormorant Garamond", Georgia, serif;
+			font-size: clamp(6rem, 18vw, 13rem);
+			font-weight: 700;
+			letter-spacing: 0.16em;
+			color: rgba(20, 95, 84, 0.06);
+			user-select: none;
+			pointer-events: none;
+			white-space: nowrap;
+		}
+
+		.banner-content {
+			position: relative;
+			z-index: 2;
+			max-width: 1100px;
+			margin: 0 auto;
+			display: grid;
+			grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+			gap: 28px;
+			align-items: center;
+			height: 100%;
+			padding: 0 20px;
+		}
+
+		.banner-copy {
+			max-width: 520px;
+		}
+
+		.banner-eyebrow {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			padding: 7px 12px;
+			border-radius: 999px;
+			background: rgba(20, 95, 84, 0.06);
+			color: var(--accent);
+			font-size: 0.76rem;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
+		.banner-copy h2 {
+			margin-top: 18px;
+			font-family: "Cormorant Garamond", Georgia, serif;
+			font-size: clamp(2.4rem, 5vw, 4.7rem);
+			line-height: 0.96;
+			letter-spacing: -0.04em;
+			color: #171d1b;
+		}
+
+		.banner-copy p {
+			margin-top: 16px;
+			max-width: 44ch;
+			color: var(--muted);
+			font-size: 1.02rem;
+			line-height: 1.7;
+		}
+
+		.banner-actions {
+			display: flex;
+			align-items: center;
+			gap: 14px;
+			margin-top: 26px;
+		}
+
+		.banner-button {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			padding: 13px 22px;
+			border-radius: 999px;
+			background: linear-gradient(120deg, var(--accent), #0f4f46 55%, #b89254 130%);
+			color: #ffffff;
+			text-decoration: none;
+			font-weight: 700;
+			font-size: 0.92rem;
+			box-shadow: 0 12px 24px rgba(20, 95, 84, 0.26);
+		}
+
+		.banner-note {
+			font-size: 0.85rem;
+			color: var(--muted);
+		}
+
+		.gallery-wrapper {
+			max-width: none;
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 10px;
+		}
+
+		.gallery-wrapper .scrolling-row {
+			display: flex;
+			overflow: hidden;
+			white-space: nowrap;
+			width: 100%;
+		}
+
+		.gallery-wrapper .scrolling-content {
+			display: flex;
+			width: max-content;
+			animation: scroll-left 5s linear infinite;
+			will-change: transform;
+		}
+
+		.gallery-wrapper .row-2 .scrolling-content {
+			animation-duration: 4.2s;
+		}
+
+		.gallery-wrapper .card {
+			position: relative;
+			flex: 0 0 240px;
+			height: 190px;
+			margin-right: 14px;
+			border-radius: 20px;
+			overflow: hidden;
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+			border: 1px solid rgba(255, 255, 255, 0.18);
+			box-shadow: 0 18px 34px rgba(18, 24, 22, 0.12);
+		}
+
+		.gallery-wrapper .card::before {
+			content: none;
+		}
+
+		.gallery-wrapper .card .feature-reel-caption {
+			display: none;
+		}
+
+		.gallery-wrapper .card .feature-reel-caption .eyebrow {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			font-size: 0.68rem;
+			font-weight: 700;
+			letter-spacing: 0.18em;
+			text-transform: uppercase;
+			color: rgba(255, 255, 255, 0.8);
+		}
+
+		.gallery-wrapper .card .feature-reel-caption h3 {
+			margin-top: 4px;
+			font-size: 0.96rem;
+			font-weight: 600;
+			letter-spacing: -0.01em;
+			color: #ffffff;
+		}
+
+		.gallery-wrapper .card .feature-reel-caption p {
+			display: none;
+		}
+
+		.middle-text {
+			margin: -18px 0;
+			padding: 10px 20px;
+			border-radius: 999px;
+			background: rgba(255, 255, 255, 0.78);
+			border: 1px solid rgba(255, 255, 255, 0.38);
+			backdrop-filter: blur(16px) saturate(130%);
+			-webkit-backdrop-filter: blur(16px) saturate(130%);
+			box-shadow: 0 12px 28px rgba(18, 24, 22, 0.12);
+			font-size: 0.78rem;
+			font-weight: 700;
+			letter-spacing: 0.14em;
+			text-transform: uppercase;
+			color: var(--text);
+			z-index: 10;
+			text-align: center;
+			pointer-events: none;
+		}
+
+		@keyframes scroll-left {
+			0% {
+				transform: translateX(0);
+			}
+			100% {
+				transform: translateX(-50%);
+			}
+		}
+
+		.banner-visual {
+			position: relative;
+			min-height: 400px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.banner-car {
+			position: relative;
+			width: min(100%, 560px);
+			filter: drop-shadow(0 18px 24px rgba(20, 28, 26, 0.18));
+		}
+
+		.banner-car img {
+			width: 100%;
+			height: auto;
+			display: block;
+			object-fit: contain;
+			transform: translateX(12px);
+			opacity: 1;
+			transition: transform 420ms cubic-bezier(.2, .7, 0, 1), opacity 320ms ease;
+			will-change: transform, opacity;
+		}
+
+		.banner-car img.is-exiting {
+			opacity: 0;
+			transform: translateX(-42px);
+		}
+
+		.banner-car img.is-entering {
+			opacity: 0;
+			transform: translateX(42px);
+		}
+
+		.banner-car::after {
+			content: "";
+			position: absolute;
+			left: 12%;
+			right: 10%;
+			bottom: 8px;
+			height: 22px;
+			background: radial-gradient(ellipse at center, rgba(16, 24, 22, 0.35) 0%, rgba(16, 24, 22, 0.12) 38%, rgba(16, 24, 22, 0) 72%);
+			filter: blur(10px);
+			opacity: 0.8;
+		}
+
+		.banner-reflection {
+			position: absolute;
+			left: 18%;
+			right: 4%;
+			bottom: 0;
+			height: 120px;
+			background: linear-gradient(to bottom, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 58%);
+			transform: scaleY(-1);
+			opacity: 0.16;
+			filter: blur(6px);
+			mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent 80%);
+			-webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), transparent 80%);
+		}
+
+		.banner-search {
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+			width: min(1100px, calc(100% - 40px));
+			bottom: 24px;
+			z-index: 3;
+			background: rgba(255, 255, 255, 0.96);
+			border: none;
+			border-radius: 20px;
+			box-shadow: 0 18px 34px rgba(18, 24, 22, 0.12);
+			padding: 14px;
+			display: grid;
+			grid-template-columns: 1.1fr 1fr 1fr auto;
+			gap: 12px;
+			align-items: center;
+		}
+
+		.search-field {
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+		}
+
+		.search-field label {
+			font-size: 0.74rem;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			color: #6b726f;
+		}
+
+		.search-field select,
+		.search-field input {
+			width: 100%;
+			height: 44px;
+			padding: 0 14px;
+			border-radius: 12px;
+			border: 1px solid #e4e0d6;
+			background: #ffffff;
+			color: var(--text);
+			font: inherit;
+			outline: none;
+		}
+
+		.search-field select:focus,
+		.search-field input:focus {
+			border-color: rgba(20, 95, 84, 0.5);
+			box-shadow: 0 0 0 3px rgba(20, 95, 84, 0.1);
+		}
+
+		.search-submit {
+			height: 44px;
+			padding: 0 18px;
+			border: 0;
+			border-radius: 12px;
+			background: linear-gradient(120deg, var(--accent), #0f4f46 60%, #b89254 140%);
+			color: #ffffff;
+			font: inherit;
+			font-weight: 700;
+			cursor: pointer;
+			box-shadow: 0 12px 22px rgba(20, 95, 84, 0.24);
+		}
+
+		.reviews-section {
+			max-width: 1100px;
+			margin: 0 auto 84px;
+			padding: 0 20px;
+		}
+
+		.reviews-panel {
+			background: #ffffff;
+			border: none;
+			border-radius: 20px;
+			box-shadow: 0 12px 30px rgba(18, 24, 22, 0.07);
+			padding: 34px;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.reviews-panel::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background:
+				radial-gradient(circle at top right, rgba(184, 146, 84, 0.12), transparent 34%),
+				radial-gradient(circle at left bottom, rgba(20, 95, 84, 0.08), transparent 30%);
+			pointer-events: none;
+		}
+
+		.reviews-head {
+			position: relative;
+			z-index: 1;
+			display: flex;
+			align-items: flex-end;
+			justify-content: space-between;
+			gap: 16px;
+			margin-bottom: 22px;
+		}
+
+		.reviews-kicker {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			padding: 7px 12px;
+			border-radius: 999px;
+			background: rgba(20, 95, 84, 0.06);
+			color: var(--accent);
+			font-size: 0.76rem;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
+		.reviews-head h2 {
+			font-family: "Cormorant Garamond", Georgia, serif;
+			font-size: clamp(1.8rem, 3vw, 2.6rem);
+			line-height: 1.1;
+			margin-top: 10px;
+		}
+
+		.reviews-head p {
+			max-width: 50ch;
+			color: var(--muted);
+			line-height: 1.6;
+		}
+
+		.reviews-summary {
+			position: relative;
+			z-index: 1;
+			display: inline-flex;
+			align-items: center;
+			gap: 10px;
+			padding: 12px 16px;
+			border-radius: 999px;
+			border: 1px solid #ece8df;
+			background: rgba(255, 255, 255, 0.88);
+			box-shadow: 0 10px 20px rgba(18, 24, 22, 0.06);
+			font-weight: 700;
+			color: #1f2725;
+			white-space: nowrap;
+		}
+
+		.reviews-summary svg {
+			width: 18px;
+			height: 18px;
+			flex: 0 0 auto;
+		}
+
+		.reviews-grid {
+			position: relative;
+			z-index: 1;
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 18px;
+		}
+
+		.review-card {
+			background: rgba(255, 255, 255, 0.92);
+			border: none;
+			border-radius: 18px;
+			padding: 20px;
+			box-shadow: 0 12px 24px rgba(18, 24, 22, 0.06);
+		}
+
+		.review-stars {
+			display: flex;
+			gap: 4px;
+			color: #f4a31a;
+			font-size: 1rem;
+			letter-spacing: 0.1em;
+		}
+
+		.review-stars span {
+			color: #d7dbe3;
+		}
+
+		.review-text {
+			margin-top: 14px;
+			color: #2f3533;
+			line-height: 1.7;
+			font-style: italic;
+		}
+
+		.review-user {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			margin-top: 18px;
+		}
+
+		.review-avatar {
+			width: 46px;
+			height: 46px;
+			border-radius: 50%;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			font-weight: 800;
+			color: #ffffff;
+			background: linear-gradient(120deg, var(--accent), #0f4f46 55%, #b89254 130%);
+			box-shadow: 0 10px 18px rgba(20, 95, 84, 0.24);
+			flex: 0 0 auto;
+		}
+
+		.review-user strong {
+			display: block;
+			font-size: 0.95rem;
+		}
+
+		.review-user span {
+			display: block;
+			font-size: 0.82rem;
+			color: var(--muted);
+			margin-top: 2px;
+		}
+
+		.feature-reel {
+			max-width: none;
+			width: 100%;
+			margin: 0 0 84px;
+			padding: 0;
+		}
+
+		.feature-reel-panel {
+			position: relative;
+			overflow: hidden;
+			min-height: auto;
+			border-radius: 0;
+			background: transparent;
+			box-shadow: none;
+			isolation: isolate;
+		}
+
+		.feature-reel-panel::before {
+			content: none;
+		}
+
+		.feature-reel-panel::after {
+			content: none;
+		}
+
+		.feature-reel-grid {
+			position: relative;
+			z-index: 1;
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 0;
+			align-items: stretch;
+			min-height: auto;
+			padding: 0;
+		}
+
+		.feature-reel-stage {
+			position: relative;
+			min-height: 500px;
+			border-radius: 24px;
+			overflow: hidden;
+			background: rgba(255, 255, 255, 0.04);
+			border: none;
+			box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+		}
+
+		.feature-reel-track,
+		.feature-reel-track::after {
+			position: absolute;
+			inset: 0;
+		}
+
+		.feature-reel-track {
+			display: flex;
+			width: max-content;
+			animation: reelScrollLeftToRight 28s linear infinite;
+			will-change: transform;
+		}
+
+		.feature-reel-track::after {
+			content: "";
+			left: 100%;
+			right: -100%;
+			background: inherit;
+		}
+
+		.feature-reel-card,
+		.feature-reel-card::before {
+			position: absolute;
+			inset: 0;
+		}
+
+		.feature-reel-card {
+			position: relative;
+			flex: 0 0 100%;
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+		.feature-reel-card::before {
+			content: "";
+			background: linear-gradient(to top, rgba(8, 12, 11, 0.78) 0%, rgba(8, 12, 11, 0.18) 48%, rgba(8, 12, 11, 0.08) 100%);
+		}
+
+		.feature-reel-card-inner {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			transform: scale(1.04);
+			transition: transform 1100ms ease;
+		}
+
+		.feature-reel-stage:hover .feature-reel-track {
+			animation-play-state: paused;
+		}
+
+		.feature-reel-overlay {
+			position: absolute;
+			left: 20px;
+			right: 20px;
+			bottom: 20px;
+			z-index: 2;
+			display: flex;
+			align-items: flex-end;
+			justify-content: space-between;
+			gap: 16px;
+			color: #ffffff;
+		}
+
+		.feature-reel-caption {
+			max-width: 340px;
+			padding: 16px 18px;
+			border-radius: 18px;
+			background: rgba(12, 17, 16, 0.52);
+			border: 1px solid rgba(255, 255, 255, 0.14);
+			backdrop-filter: blur(10px);
+			-webkit-backdrop-filter: blur(10px);
+		}
+
+		.feature-reel-caption .eyebrow {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			font-size: 0.7rem;
+			font-weight: 700;
+			letter-spacing: 0.16em;
+			text-transform: uppercase;
+			color: rgba(255, 255, 255, 0.72);
+		}
+
+		.feature-reel-caption h3 {
+			margin-top: 8px;
+			font-size: 1.1rem;
+			font-weight: 600;
+			letter-spacing: -0.02em;
+		}
+
+		.feature-reel-caption p {
+			margin-top: 6px;
+			font-size: 0.86rem;
+			line-height: 1.55;
+			color: rgba(255, 255, 255, 0.72);
+		}
+
+		.feature-reel-indicators {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			padding: 10px 12px;
+			border-radius: 999px;
+			background: rgba(255, 255, 255, 0.08);
+			border: 1px solid rgba(255, 255, 255, 0.12);
+		}
+
+		.feature-reel-indicators span {
+			width: 34px;
+			height: 4px;
+			border-radius: 999px;
+			background: rgba(255, 255, 255, 0.28);
+			transition: background-color 260ms ease, width 260ms ease;
+		}
+
+		.feature-reel-indicators span.is-active {
+			width: 52px;
+			background: #ffffff;
+		}
+
+		@keyframes reelScrollLeftToRight {
+			from {
+				transform: translateX(-50%);
+			}
+			to {
+				transform: translateX(0%);
+			}
+		}
+
+		.site-footer {
+			margin-top: 0;
+			border-top: none;
+			background: linear-gradient(120deg, var(--accent), #0f4f46 55%, #b89254 130%);
+			color: #ffffff;
+		}
+
+		.footer-inner {
+			max-width: 1100px;
+			margin: 0 auto;
+			padding: 30px 20px;
+			display: flex;
+			align-items: flex-start;
+			justify-content: space-between;
+			gap: 22px;
+		}
+
+		.footer-brand {
+			max-width: 420px;
+		}
+
+		.footer-brand h3 {
+			font-family: "Cormorant Garamond", Georgia, serif;
+			font-size: 1.55rem;
+			line-height: 1.1;
+		}
+
+		.footer-brand p {
+			margin-top: 8px;
+			color: rgba(255, 255, 255, 0.82);
+			line-height: 1.6;
+			font-size: 0.92rem;
+		}
+
+		.footer-links {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, auto));
+			gap: 10px 18px;
+			list-style: none;
+		}
+
+		.footer-links a {
+			color: #ffffff;
+			text-decoration: none;
+			font-size: 0.92rem;
+			font-weight: 600;
+			padding: 8px 10px;
+			border-radius: 10px;
+			border: 1px solid transparent;
+			transition: background-color 0.2s ease, border-color 0.2s ease;
+		}
+
+		.footer-links a.social-link {
+			display: inline-flex;
+			align-items: center;
+			justify-content: flex-start;
+			gap: 10px;
+			min-width: 210px;
+			padding: 8px 12px;
+			border: 1px solid rgba(255, 255, 255, 0.24);
+			background: rgba(255, 255, 255, 0.08);
+		}
+
+		.footer-links a.social-link svg {
+			width: 18px;
+			height: 18px;
+			fill: #ffffff;
+			flex: 0 0 auto;
+		}
+
+		.footer-links a.contact-link {
+			display: inline-flex;
+			align-items: center;
+			gap: 10px;
+			min-width: 210px;
+			background: rgba(255, 255, 255, 0.08);
+			border: 1px solid rgba(255, 255, 255, 0.24);
+		}
+
+		.footer-links a.contact-link svg {
+			width: 18px;
+			height: 18px;
+			fill: #ffffff;
+			flex: 0 0 auto;
+		}
+
+		.sr-only {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			padding: 0;
+			margin: -1px;
+			overflow: hidden;
+			clip: rect(0, 0, 0, 0);
+			white-space: nowrap;
+			border: 0;
+		}
+
+		.footer-links a:hover,
+		.footer-links a:focus-visible {
+			background: rgba(255, 255, 255, 0.16);
+			border-color: rgba(255, 255, 255, 0.3);
+			outline: none;
+		}
+
+		.footer-bottom {
+			max-width: 1100px;
+			margin: 0 auto;
+			padding: 0 20px 24px;
+			color: rgba(255, 255, 255, 0.78);
+			font-size: 0.82rem;
+		}
+
+		.floating-ws {
+			position: fixed;
+			right: 18px;
+			bottom: 22px;
+			width: 58px;
+			height: 58px;
+			padding: 0;
+			line-height: 0;
+			border-radius: 50%;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			background: linear-gradient(140deg, #25d366, #17b655 72%);
+			color: #ffffff;
+			box-shadow: 0 14px 30px rgba(14, 86, 43, 0.35);
+			z-index: 2200;
+			text-decoration: none;
+			transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+		}
+
+		.floating-ws svg {
+			width: 30px;
+			height: 30px;
+			display: block;
+			flex: 0 0 30px;
+			fill: currentColor;
+			overflow: visible;
+		}
+
+		.floating-ws:hover,
+		.floating-ws:focus-visible {
+			transform: translateY(-2px) scale(1.03);
+			box-shadow: 0 18px 36px rgba(14, 86, 43, 0.42);
+			filter: brightness(1.03);
+			outline: none;
+		}
+
+		@media (max-width: 900px) {
+			.top-nav {
+				position: relative;
+				flex-wrap: wrap;
+			}
+
+			.menu-toggle {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.menu-wrap {
+				display: none;
+				width: 100%;
+				border-top: 1px solid var(--line);
+				margin-top: 10px;
+				padding-top: 10px;
+			}
+
+			.menu {
+				flex-direction: column;
+				align-items: stretch;
+				gap: 4px;
+				padding: 0;
+			}
+
+			.menu-indicator {
+				display: none;
+			}
+
+			.menu .active {
+				background: linear-gradient(120deg, var(--accent), #0f4f46 72%);
+			}
+
+			.menu a,
+			.cta {
+				width: 100%;
+			}
+
+			#menu-toggle:checked ~ .menu-wrap {
+				display: block;
+				animation: menuReveal 280ms ease;
+			}
+
+			.hero {
+				min-height: 340px;
+				padding: 28px 0 36px;
+			}
+
+			.hero-content {
+				max-width: 100%;
+				padding: 0 22px;
+			}
+
+			.hero-actions {
+				width: 100%;
+			}
+
+			.hero-btn {
+				flex: 1 1 160px;
+			}
+
+			.why-us-panel {
+				padding: 58px 30px 44px;
+			}
+
+			.why-us-panel::before {
+				left: 10px;
+				top: 44px;
+				bottom: 40px;
+			}
+
+			.why-us-grid {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 22px;
+			}
+
+			.package-card {
+				flex-basis: 230px;
+			}
+
+			.carousel-arrow {
+				display: none;
+			}
+
+			.banner-panel {
+				padding: 28px 0 170px;
+				min-height: auto;
+			}
+
+			.banner-inner,
+			.banner-content {
+				padding-left: 22px;
+				padding-right: 22px;
+			}
+
+			.banner-content {
+				grid-template-columns: 1fr;
+			}
+
+			.banner-visual {
+				min-height: 260px;
+			}
+
+			.banner-car img {
+				transform: translateX(0);
+			}
+
+			.banner-search {
+				width: calc(100% - 32px);
+				grid-template-columns: 1fr 1fr;
+			}
+
+			.search-submit {
+				grid-column: 1 / -1;
+			}
+
+			.footer-inner {
+				flex-direction: column;
+				align-items: stretch;
+			}
+
+			.footer-links {
+				grid-template-columns: 1fr 1fr;
+			}
+		}
+
+		@media (max-width: 600px) {
+			.site-header {
+				padding: 10px 10px 0;
+			}
+
+			.top-nav {
+				gap: 10px;
+				padding: 10px;
+				border-radius: 14px;
+			}
+
+			.brand {
+				gap: 8px;
+				min-width: 0;
+			}
+
+			.brand img {
+				width: 36px;
+				height: 36px;
+				border-radius: 9px;
+			}
+
+			.brand strong {
+				font-size: 1.08rem;
+			}
+
+			.brand span {
+				font-size: 0.68rem;
+				margin-top: 1px;
+			}
+
+			.why-us-panel {
+				padding: 54px 18px 38px;
+			}
+
+			.why-us-panel::before {
+				display: none;
+			}
+
+			.why-us-grid {
+				grid-template-columns: 1fr;
+				margin-top: 30px;
+			}
+
+			.why-card {
+				padding: 0;
+			}
+
+			.package-modal {
+				padding: 12px;
+			}
+
+			.package-modal-dialog {
+				padding: 18px;
+			}
+
+			.modal-booking {
+				grid-template-columns: 1fr;
+			}
+
+			.modal-actions {
+				justify-content: stretch;
+			}
+
+			.modal-submit {
+				width: 100%;
+			}
+
+			.packages-head {
+				flex-direction: column;
+				align-items: flex-start;
+			}
+
+			.package-card {
+				flex-basis: calc(100% - 28px);
+			}
+
+			.hero {
+				margin-bottom: 52px;
+				padding: 24px 0 30px;
+				min-height: 320px;
+			}
+
+			.hero h1 {
+				font-size: clamp(1.6rem, 7.2vw, 2.2rem);
+				line-height: 1.12;
+			}
+
+			.hero p {
+				font-size: 0.92rem;
+				line-height: 1.5;
+			}
+
+			.banner-panel {
+				padding-top: 22px;
+				padding-bottom: 180px;
+			}
+
+			.banner-inner,
+			.banner-content {
+				padding-left: 16px;
+				padding-right: 16px;
+			}
+
+			.banner-search {
+				grid-template-columns: 1fr;
+				padding: 12px;
+			}
+
+			.banner-copy h2 {
+				font-size: clamp(1.9rem, 9.5vw, 2.6rem);
+				line-height: 1;
+			}
+
+			.banner-copy p {
+				font-size: 0.94rem;
+				line-height: 1.6;
+			}
+
+			.banner-actions {
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 10px;
+			}
+
+			.banner-button {
+				width: 100%;
+			}
+
+			.banner-note {
+				font-size: 0.8rem;
+			}
+
+			.reviews-panel {
+				padding: 28px 22px;
+			}
+
+			.reviews-head {
+				flex-direction: column;
+				align-items: flex-start;
+			}
+
+			.reviews-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.gallery-wrapper {
+				padding: 0;
+			}
+
+			.gallery-wrapper .card {
+				flex-basis: 210px;
+				height: 170px;
+			}
+
+			.middle-text {
+				font-size: 0.7rem;
+				letter-spacing: 0.12em;
+				padding: 9px 16px;
+			}
+
+			.footer-links {
+				grid-template-columns: 1fr;
+			}
+
+			.footer-inner {
+				padding: 26px 16px;
+			}
+
+			.footer-bottom {
+				padding: 0 16px 20px;
+			}
+
+			.floating-ws {
+				right: 12px;
+				bottom: calc(14px + env(safe-area-inset-bottom));
+				width: 54px;
+				height: 54px;
+			}
+
+			.floating-ws svg {
+				width: 28px;
+				height: 28px;
+				flex-basis: 28px;
+			}
+		}
+
+		@media (max-width: 420px) {
+			.brand span {
+				display: none;
+			}
+
+			.menu-toggle {
+				width: 38px;
+				height: 38px;
+			}
+
+			.hero {
+				min-height: 300px;
+			}
+
+			.package-card {
+				flex-basis: calc(100% - 10px);
+			}
+
+			.floating-ws {
+				width: 50px;
+				height: 50px;
+			}
+
+			.floating-ws svg {
+				width: 26px;
+				height: 26px;
+				flex-basis: 26px;
+			}
+		}
+
+		@keyframes pageFade {
+			from {
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+
+		@keyframes navSlide {
+			from {
+				opacity: 0;
+				transform: translateY(-10px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes menuReveal {
+			from {
+				opacity: 0;
+				transform: translateY(-6px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+	</style>
+</head>
+<body>
+	<header class="site-header">
+		<nav class="top-nav" aria-label="Primary Navigation">
+			<a class="brand" href="#">
+				<img src="image/logo.png" alt="Langkawi by Ammar logo" />
+				<div>
+					<strong>Langkawi by Ammar</strong>
+					<span>Tour Packages &amp; Car Rental</span>
+				</div>
+			</a>
+
+			<input id="menu-toggle" type="checkbox" hidden />
+			<label for="menu-toggle" class="menu-toggle" aria-label="Toggle Menu">
+				<span></span>
+			</label>
+
+			<div class="menu-wrap">
+				<ul class="menu">
+					<span class="menu-indicator" aria-hidden="true"></span>
+					<li><a class="active" href="#">Home</a></li>
+					<li><a href="#tour">Tour</a></li>
+					<li><a href="#rental">Rental</a></li>
+					<li><a href="#review">Review</a></li>
+				</ul>
+			</div>
+
+			<a class="cta" href="#booking">Book Now</a>
+		</nav>
+	</header>
+
+	<main class="hero">
+		<div class="hero-slides" aria-hidden="true">
+			<div class="hero-slide is-active"></div>
+			<div class="hero-slide"></div>
+		</div>
+		<div class="hero-content">
+			<span class="hero-badge">Signature Experience</span>
+			<h1>Explore Langkawi with comfort and style.</h1>
+			<p>Satu tempat untuk tempahan tour package dan sewa kereta Langkawi, dibina supaya nampak premium, mudah ditempah, dan sesuai untuk desktop serta mobile.</p>
+			<div class="hero-actions">
+				<a class="hero-btn primary" href="#rental">Browse Car</a>
+				<a class="hero-btn ghost" href="#tour">View Package</a>
+			</div>
+		</div>
+	</main>
+
+	<section class="why-us" id="why-us" aria-label="Why Us">
+		<div class="why-us-panel">
+			<div class="why-us-head">
+				<h2>Why Us?</h2>
+				<p>Kami fokus pada pengalaman perjalanan yang tenang dan premium, dari tempahan awal sampai trip anda selesai di Langkawi.</p>
+			</div>
+			<div class="why-us-grid">
+				<article class="why-card">
+					<span class="why-icon" aria-hidden="true">
+						<svg viewBox="0 0 48 48" role="img" aria-label="">
+							<path d="M7 29c6.5 0 9.8-4.6 12.8-7.8 2.2-2.4 4.1-3.9 7.2-3.9 3.8 0 6.1 2.4 6.1 6.4 0 6.2-5.2 11.3-11.7 11.3H7z"></path>
+							<path class="accent" d="M29 11c0-2.3 1.8-4.2 4-4.2M33 11c0-3.4 2.6-6.2 5.9-6.2"></path>
+							<path class="accent" d="M33 16v-5M30.5 13.5H36"></path>
+						</svg>
+					</span>
+					<h3>Easy Booking Flow</h3>
+					<p>Langkah tempahan yang ringkas dan cepat supaya anda boleh terus lock tarikh perjalanan.</p>
+				</article>
+				<article class="why-card">
+					<span class="why-icon" aria-hidden="true">
+						<svg viewBox="0 0 48 48" role="img" aria-label="">
+							<circle cx="24" cy="24" r="15"></circle>
+							<path class="accent" d="M16 32l16-16"></path>
+							<path d="M22 18h9M16 24h10M13 30h9"></path>
+						</svg>
+					</span>
+					<h3>No Hidden Charges</h3>
+					<p>Harga telus dan jelas sejak awal, tanpa caj tersembunyi semasa pickup atau return.</p>
+				</article>
+				<article class="why-card">
+					<span class="why-icon" aria-hidden="true">
+						<svg viewBox="0 0 48 48" role="img" aria-label="">
+							<path d="M24 9l5 3.1 5.8-.4 1.8 5.5 4.7 3.5-2.6 5.2 1.1 5.7-5.4 2.3-3.8 4.4-5.1-2.8-5.1 2.8-3.8-4.4-5.4-2.3 1.1-5.7-2.6-5.2 4.7-3.5 1.8-5.5 5.8.4z"></path>
+							<path class="accent" d="M18.5 24.5l3.7 3.8 7.3-7.2"></path>
+						</svg>
+					</span>
+					<h3>Trusted Local Team</h3>
+					<p>Sokongan pasukan tempatan yang responsive untuk tour package dan urusan sewa kereta anda.</p>
+				</article>
+			</div>
+		</div>
+	</section>
+
+	<section class="packages-section" id="tour" aria-label="Travel Packages">
+		<div class="packages-head">
+			<div>
+				<h2>Featured Travel Packages</h2>
+				<p>Browse curated tropical escapes with premium itineraries, elegant stays, and seamless local experiences for your Langkawi trip.</p>
+			</div>
+		</div>
+
+		<div class="carousel-shell">
+			<button class="carousel-arrow left" type="button" aria-label="Slide left" data-dir="left">&#10094;</button>
+			<div class="packages-carousel" id="packagesCarousel">
+				<article class="package-card">
+					<div class="package-image">
+						<img src="image/langkawi1.jpg" alt="Private Tour Langkawi" />
+						<div class="image-dots"><i class="active"></i><i></i><i></i></div>
+					</div>
+					<div class="package-body">
+						<div class="package-meta"><span>Private Tour</span><span class="rating">5.0 ★</span></div>
+						<h3 class="package-title">Private Tour Langkawi</h3>
+						<ul class="package-list">
+							<li>Fully private &amp; customizable itinerary</li>
+							<li>Ideal for couples, families, and VIP guests</li>
+							<li>Door-to-door Langkawi experience</li>
+						</ul>
+						<div class="price-wrap"><span class="price-old">RM 2,599</span><span class="price-new">RM 2,099</span></div>
+						<a class="request-btn" href="#contact">View Package</a>
+					</div>
+				</article>
+
+				<article class="package-card">
+					<div class="package-image">
+						<img src="image/langkawi2.avif" alt="Mangrove Tour package" />
+						<div class="image-dots"><i></i><i class="active"></i><i></i></div>
+					</div>
+					<div class="package-body">
+						<div class="package-meta"><span>Mangrove Tour</span><span class="rating">4.9 ★</span></div>
+						<h3 class="package-title">Mangrove Tour package</h3>
+						<ul class="package-list">
+							<li>Click to check out packages we are offering</li>
+							<li>Select from the list inside</li>
+							<li>Discover Langkawi's mangrove beauty</li>
+						</ul>
+						<div class="price-wrap"><span class="price-old">RM 1,450</span><span class="price-new">RM 1,180</span></div>
+						<a class="request-btn" href="#contact">View Package</a>
+					</div>
+				</article>
+
+				<article class="package-card">
+					<div class="package-image">
+						<img src="image/langkawi3.jpg" alt="Sunset Cruise package" />
+						<div class="image-dots"><i></i><i></i><i class="active"></i></div>
+					</div>
+					<div class="package-body">
+						<div class="package-meta"><span>Sunset Cruise</span><span class="rating">5.0 ★</span></div>
+						<h3 class="package-title">Sunset Cruise package</h3>
+						<ul class="package-list">
+							<li>Click to check out packages we are offering</li>
+							<li>Select from the list inside</li>
+							<li>Relaxed evening cruise experience</li>
+						</ul>
+						<div class="price-wrap"><span class="price-old">RM 980</span><span class="price-new">RM 780</span></div>
+						<a class="request-btn" href="#contact">View Package</a>
+					</div>
+				</article>
+
+				<article class="package-card">
+					<div class="package-image">
+						<img src="image/langkawi1.jpg" alt="3 In 1 Activities package" />
+						<div class="image-dots"><i class="active"></i><i></i><i></i></div>
+					</div>
+					<div class="package-body">
+						<div class="package-meta"><span>Activities Package</span><span class="rating">4.8 ★</span></div>
+						<h3 class="package-title">3 In 1 Activities package</h3>
+						<ul class="package-list">
+							<li>Jet Car, Parasailing, Banana Boat</li>
+							<li>Bundled package pricing for group bookings</li>
+							<li>Best value for active travelers</li>
+						</ul>
+						<div class="price-wrap"><span class="price-old">RM 1,280</span><span class="price-new">RM 1,050</span></div>
+						<a class="request-btn" href="#contact">View Package</a>
+					</div>
+				</article>
+
+				<article class="package-card">
+					<div class="package-image">
+						<img src="image/langkawi2.avif" alt="JetSki Tour Packages" />
+						<div class="image-dots"><i></i><i class="active"></i><i></i></div>
+					</div>
+					<div class="package-body">
+						<div class="package-meta"><span>JetSki Tour</span><span class="rating">4.9 ★</span></div>
+						<h3 class="package-title">JetSki Tour Packages</h3>
+						<ul class="package-list">
+							<li>Mangrove JetSki Tour 3-4 jam</li>
+							<li>9 checkpoint adventure route</li>
+							<li>RM750 per JetSki (2 pax)</li>
+						</ul>
+						<div class="price-wrap"><span class="price-old">RM 850</span><span class="price-new">RM 750</span></div>
+						<a class="request-btn" href="#contact">View Package</a>
+					</div>
+				</article>
+
+				<article class="package-card">
+					<div class="package-image">
+						<img src="image/langkawi3.jpg" alt="ATV Ride Langkawi" />
+						<div class="image-dots"><i></i><i></i><i class="active"></i></div>
+					</div>
+					<div class="package-body">
+						<div class="package-meta"><span>Hot Selling</span><span class="rating">5.0 ★</span></div>
+						<h3 class="package-title">ATV Ride Langkawi</h3>
+						<ul class="package-list">
+							<li>Off-road adventure with scenic stops</li>
+							<li>Customer gallery and video highlights</li>
+							<li>Thrilling island terrain experience</li>
+						</ul>
+						<div class="price-wrap"><span class="price-old">RM 480</span><span class="price-new">RM 390</span></div>
+						<a class="request-btn" href="#contact">View Package</a>
+					</div>
+				</article>
+			</div>
+			<button class="carousel-arrow right" type="button" aria-label="Slide right" data-dir="right">&#10095;</button>
+		</div>
+	</section>
+
+	<div class="package-modal" id="packageModal" aria-hidden="true">
+		<div class="package-modal-backdrop" data-close-modal></div>
+		<div class="package-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalPackageTitle">
+			<button class="modal-close" type="button" data-close-modal aria-label="Close package details">&times;</button>
+			<div class="modal-head">
+				<h3 id="modalPackageTitle">Package Details</h3>
+				<p class="modal-meta" id="modalPackageMeta"></p>
+			</div>
+			<ul class="modal-list" id="modalPackageList"></ul>
+			<div class="modal-price">
+				<span>Package Price</span>
+				<strong id="modalPackagePrice">RM 0</strong>
+			</div>
+			<form class="modal-booking" id="modalBookingForm">
+				<div class="modal-field">
+					<label for="booking-date">Booking Date</label>
+					<input id="booking-date" name="booking-date" type="date" required />
+				</div>
+				<div class="modal-field">
+					<label for="booking-time">Booking Time</label>
+					<select id="booking-time" name="booking-time" required></select>
+				</div>
+				<div class="modal-field full">
+					<label for="booking-price">Selected Price</label>
+					<input id="booking-price" name="booking-price" type="text" readonly />
+				</div>
+				<div class="modal-actions">
+					<button class="modal-submit" type="submit">Book Now</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<section class="dealership-banner" id="rental" aria-label="Book Now Banner">
+		<div class="banner-panel">
+			<div class="banner-watermark" aria-hidden="true">Langkawi</div>
+			<div class="banner-content">
+				<div class="banner-copy">
+					<span class="banner-eyebrow">Premium Travel &amp; Rental</span>
+					<h2>Drive your Langkawi journey with style.</h2>
+					<p>Choose a polished travel experience with premium cars, smooth booking, and curated island packages designed for comfort and flexibility.</p>
+					<div class="banner-actions">
+						<a class="banner-button" href="#booking">Book Now</a>
+						<span class="banner-note">Luxury service. Local support. Fast confirmation.</span>
+					</div>
+				</div>
+
+				<div class="banner-visual">
+					<div class="banner-car">
+						<img id="bannerCarImage" src="image/staria.png" alt="Premium rental car" />
+						<div class="banner-reflection" aria-hidden="true"></div>
+					</div>
+				</div>
+			</div>
+
+			<form class="banner-search" aria-label="Car search">
+				<div class="search-field">
+					<label for="car-model">Car Model</label>
+					<select id="car-model" name="car-model">
+							<option value="staria">Choose model</option>
+							<option value="myvi">Myvi</option>
+							<option value="innova">Innova</option>
+							<option value="veloz">Veloz</option>
+							<option value="vios">Vios</option>
+							<option value="staria">Staria</option>
+					</select>
+				</div>
+				<div class="search-field">
+					<label for="pickup-datetime">Pickup Date &amp; Time</label>
+					<input id="pickup-datetime" name="pickup-datetime" type="datetime-local" />
+				</div>
+				<div class="search-field">
+					<label for="return-datetime">Return Date &amp; Time</label>
+					<input id="return-datetime" name="return-datetime" type="datetime-local" />
+				</div>
+				<button class="search-submit" type="submit">Search</button>
+			</form>
+		</div>
+	</section>
+
+	<section class="reviews-section" id="review" aria-label="Customer Reviews">
+		<div class="reviews-panel">
+			<div class="reviews-head">
+				<div>
+					<span class="reviews-kicker">Customer Reviews</span>
+					<h2>What guests say about Langkawi by Ammar.</h2>
+					<p>Real feedback from travelers who booked our tour packages and car rental service for their Langkawi trip.</p>
+				</div>
+				<div class="reviews-summary" aria-label="Average review rating">
+					<svg viewBox="0 0 24 24" aria-hidden="true">
+						<path fill="#f4a31a" d="M12 2.2l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4L12 17l-5.8 3 1.1-6.4-4.7-4.6 6.5-.9L12 2.2z"></path>
+					</svg>
+					<span>4.9 from over 50 reviews</span>
+				</div>
+			</div>
+			<div class="reviews-grid">
+				<article class="review-card">
+					<div class="review-stars" aria-label="5 star rating">★★★★★</div>
+					<p class="review-text">"Booking sangat mudah, package clear, dan servis memang kemas. Kereta pun ready on time, memang senang untuk family trip."</p>
+					<div class="review-user">
+						<div class="review-avatar" aria-hidden="true">S</div>
+						<div>
+							<strong>Syafiq</strong>
+							<span>Tour Package Customer</span>
+						</div>
+					</div>
+				</article>
+				<article class="review-card">
+					<div class="review-stars" aria-label="5 star rating">★★★★★</div>
+					<p class="review-text">"Car rental condition sangat bersih dan selesa. WhatsApp reply pun cepat, jadi semua urusan pickup dan return memang smooth."</p>
+					<div class="review-user">
+						<div class="review-avatar" aria-hidden="true">N</div>
+						<div>
+							<strong>Nadya</strong>
+							<span>Car Rental Customer</span>
+						</div>
+					</div>
+				</article>
+				<article class="review-card">
+					<div class="review-stars" aria-label="5 star rating">★★★★★</div>
+					<p class="review-text">"Package dan harga memang berbaloi. We got the right itinerary and the whole trip felt premium from start sampai habis."</p>
+					<div class="review-user">
+						<div class="review-avatar" aria-hidden="true">A</div>
+						<div>
+							<strong>Amir</strong>
+							<span>Repeat Guest</span>
+						</div>
+					</div>
+				</article>
+			</div>
+		</div>
+	</section>
+
+	<section class="feature-reel" aria-label="Captured Moments Gallery">
+		<div class="feature-reel-panel">
+			<div class="feature-reel-grid">
+				<div class="gallery-wrapper" id="featureReelStage" aria-hidden="true">
+					<div class="scrolling-row row-1">
+						<div class="scrolling-content feature-reel-row-track"></div>
+					</div>
+
+					<div class="middle-text">OUR CAPTURED MOMENTS OF THE DELIGHTED CUSTOMER</div>
+
+					<div class="scrolling-row row-2">
+						<div class="scrolling-content feature-reel-row-track"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer class="site-footer" id="contact" aria-label="Footer Contact">
+		<div class="footer-inner">
+			<div class="footer-brand">
+				<h3>Langkawi by Ammar</h3>
+				<p>Hubungi kami untuk pertanyaan tour package dan car rental. Fast response, easy booking, dan local support sepanjang trip anda.</p>
+			</div>
+			<ul class="footer-links">
+				<li>
+					<a class="contact-link" href="mailto:langkawibyammar@gmail.com">
+						<svg viewBox="0 0 24 24" aria-hidden="true">
+							<path d="M3.5 6.2h17A1.5 1.5 0 0 1 22 7.7v8.6a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 16.3V7.7a1.5 1.5 0 0 1 1.5-1.5zm0 1.8v.3l8.5 5.4 8.5-5.4V8H3.5zm17 7.8V10l-8.1 5.1a1 1 0 0 1-1.1 0L3.5 10v5.8h17z"></path>
+						</svg>
+						<span>Email: langkawibyammar@gmail.com</span>
+					</a>
+				</li>
+				<li>
+					<a class="contact-link" href="https://wa.me/60134480808" target="_blank" rel="noopener">
+						<svg viewBox="0 0 24 24" aria-hidden="true">
+							<path d="M12 2.2A9.8 9.8 0 0 0 3 16.8L2 22l5.4-1A9.8 9.8 0 1 0 12 2.2zm0 1.8a8 8 0 0 1 6.9 12.1l-.3.5.5 3-3.1-.5-.5.3A8 8 0 1 1 12 4z"></path>
+							<path d="M9.2 8.8c.2-.4.4-.4.7-.4h.6c.2 0 .5-.1.7.4l.9 2c.1.2.1.5 0 .7l-.5.6c-.1.2-.1.4 0 .5.4.8 1.1 1.6 1.9 2 .2.1.4.1.6 0l.7-.5c.2-.1.4-.1.6 0l1.9.9c.3.1.4.4.4.7v.6c0 .3 0 .5-.4.7-.5.3-1.1.5-1.7.5-4.5 0-8.2-3.7-8.2-8.2 0-.6.2-1.2.5-1.7z"></path>
+						</svg>
+						<span>WhatsApp: 013-448 0808</span>
+					</a>
+				</li>
+				<li>
+					<a class="social-link" href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+						<svg viewBox="0 0 24 24" aria-hidden="true">
+							<path d="M13.7 21v-8.2h2.7l.4-3.2h-3.1V7.6c0-.9.2-1.6 1.5-1.6h1.6V3.1c-.8-.1-1.6-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H8v3.2h2.6V21h3.1z"></path>
+						</svg>
+						<span>Langkawi by Ammar</span>
+					</a>
+				</li>
+				<li>
+					<a class="social-link" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+						<svg viewBox="0 0 24 24" aria-hidden="true">
+							<path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 1.8A3.7 3.7 0 0 0 3.8 7.5v9a3.7 3.7 0 0 0 3.7 3.7h9a3.7 3.7 0 0 0 3.7-3.7v-9a3.7 3.7 0 0 0-3.7-3.7h-9zm9.4 1.4a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.8A3.2 3.2 0 1 0 12 15.2 3.2 3.2 0 0 0 12 8.8z"></path>
+						</svg>
+						<span>@langkawibyammar</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="footer-bottom">&copy; 2026 Langkawi by Ammar. All rights reserved.</div>
+	</footer>
+
+	<a class="floating-ws" href="https://wa.me/60134480808" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+		<svg viewBox="0 0 448 512" aria-hidden="true">
+			<path d="M380.9 97.1C339 55.1 283.2 32 223.9 32 101.5 32 2.2 131.3 2.2 253.7c0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 221.7-99.3 221.7-221.7 0-59.3-23.1-115-64.7-157.3zM223.9 438.7c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-68-4.4-7c-18.5-29.4-28.2-63.4-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 54 81.2 53.9 130.5 0 101.8-82.9 184.5-184.4 184.5zm101.1-138.2c-5.5-2.8-32.8-16.1-37.9-17.9-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 17.9-17.6 21.6-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-65.9-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.3-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.8 94.8 83.8 35.2 15.2 49 16.5 66.6 14 10.7-1.6 32.8-13.4 37.4-26.3 4.6-12.9 4.6-23.9 3.2-26.3-1.3-2.4-5-3.7-10.5-6.5z"></path>
+		</svg>
+	</a>
+
+	<script>
+		const heroImages = [
+			"image/langkawi1.jpg",
+			"image/langkawi2.avif",
+			"image/langkawi3.jpg"
+		];
+
+		const hero = document.querySelector(".hero");
+		const slides = hero ? hero.querySelectorAll(".hero-slide") : [];
+
+		if (slides.length === 2) {
+			slides[0].style.backgroundImage = `url("${heroImages[0]}")`;
+			slides[1].style.backgroundImage = `url("${heroImages[1]}")`;
+
+			let active = 0;
+			let imageIndex = 0;
+
+			if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+				setInterval(() => {
+					const nextSlide = active === 0 ? 1 : 0;
+					const nextImage = (imageIndex + 1) % heroImages.length;
+
+					slides[nextSlide].style.backgroundImage = `url("${heroImages[nextImage]}")`;
+					slides[nextSlide].classList.add("is-active");
+					slides[active].classList.remove("is-active");
+
+					active = nextSlide;
+					imageIndex = nextImage;
+				}, 4200);
+			}
+		}
+
+		const packagesCarousel = document.getElementById("packagesCarousel");
+		const arrowButtons = document.querySelectorAll(".carousel-arrow");
+		const bannerCarImage = document.getElementById("bannerCarImage");
+		const carModelSelect = document.getElementById("car-model");
+		const packageModal = document.getElementById("packageModal");
+		const modalTitle = document.getElementById("modalPackageTitle");
+		const modalMeta = document.getElementById("modalPackageMeta");
+		const modalList = document.getElementById("modalPackageList");
+		const modalPrice = document.getElementById("modalPackagePrice");
+		const bookingPrice = document.getElementById("booking-price");
+		const bookingDateInput = document.getElementById("booking-date");
+		const bookingTimeInput = document.getElementById("booking-time");
+		const modalBookingForm = document.getElementById("modalBookingForm");
+		const packageButtons = document.querySelectorAll(".request-btn");
+		const featureReelStage = document.getElementById("featureReelStage");
+		const featureReelRows = featureReelStage ? featureReelStage.querySelectorAll(".feature-reel-row-track") : [];
+		const featureReelIndicators = featureReelStage ? featureReelStage.querySelectorAll(".feature-reel-indicators span") : [];
+		const featureReelLabel = document.getElementById("featureReelLabel");
+		const featureReelTitle = document.getElementById("featureReelTitle");
+		const featureReelDescription = document.getElementById("featureReelDescription");
+		const whatsappNumber = "60134480808";
+		const BOOKING_START_HOUR = 9;
+		const BOOKING_END_HOUR = 16;
+		const carModelImages = {
+			myvi: "image/myvi.png",
+			innova: "image/innova.png",
+			veloz: "image/veloz.png",
+			vios: "image/viosnew.png",
+			staria: "image/staria.png"
+		};
+		let bannerCarSwitching = false;
+		let modalOpen = false;
+		const featureReelScenes = [
+			{
+				image: "image/langkawi1.jpg",
+				label: "Aerial View",
+				title: "Island Arrival",
+				description: "A calm opening frame that settles the viewer before moving into the next scene."
+			},
+			{
+				image: "image/langkawi2.avif",
+				label: "Interior View",
+				title: "Coastal Drive",
+				description: "Warm interior textures and clean framing keep the loop soft and continuous."
+			},
+			{
+				image: "image/langkawi3.jpg",
+				label: "Exterior View",
+				title: "Sunset Stop",
+				description: "The sequence closes on an open exterior shot before cycling back seamlessly."
+			}
+		];
+
+		const formatDateInput = (dateValue) => {
+			const year = dateValue.getFullYear();
+			const month = String(dateValue.getMonth() + 1).padStart(2, "0");
+			const day = String(dateValue.getDate()).padStart(2, "0");
+			return `${year}-${month}-${day}`;
+		};
+
+		const formatTimeInput = (dateValue) => {
+			const hours = String(dateValue.getHours()).padStart(2, "0");
+			const minutes = String(dateValue.getMinutes()).padStart(2, "0");
+			return `${hours}:${minutes}`;
+		};
+
+		const formatTimeLabel = (timeValue) => {
+			const [hourString, minuteString] = timeValue.split(":");
+			const hourNumber = Number(hourString);
+			const minuteNumber = Number(minuteString);
+			const suffix = hourNumber >= 12 ? "PM" : "AM";
+			const hour12 = hourNumber % 12 || 12;
+			return `${hour12}:${String(minuteNumber).padStart(2, "0")} ${suffix}`;
+		};
+
+		const getNearestHour = () => {
+			const now = new Date();
+			const nextHour = new Date(now);
+			nextHour.setMinutes(0, 0, 0);
+			if (nextHour <= now) {
+				nextHour.setHours(nextHour.getHours() + 1);
+			}
+			return nextHour;
+		};
+
+		const getNextAvailableBookingSlot = () => {
+			const slot = getNearestHour();
+
+			if (slot.getHours() < BOOKING_START_HOUR) {
+				slot.setHours(BOOKING_START_HOUR, 0, 0, 0);
+			}
+
+			if (slot.getHours() > BOOKING_END_HOUR) {
+				slot.setDate(slot.getDate() + 1);
+				slot.setHours(BOOKING_START_HOUR, 0, 0, 0);
+			}
+
+			return slot;
+		};
+
+		const buildBookingTimeOptions = (selectedDate, preferredTime = "") => {
+			if (!bookingTimeInput) {
+				return;
+			}
+
+			const nextSlot = getNextAvailableBookingSlot();
+			const todayDate = formatDateInput(new Date());
+			let startHour = BOOKING_START_HOUR;
+
+			if (selectedDate === todayDate) {
+				startHour = Math.max(BOOKING_START_HOUR, nextSlot.getHours());
+			}
+
+			if (startHour > BOOKING_END_HOUR) {
+				bookingDateInput.value = formatDateInput(nextSlot);
+				buildBookingTimeOptions(bookingDateInput.value, formatTimeInput(nextSlot));
+				return;
+			}
+
+			bookingTimeInput.innerHTML = "";
+			for (let hour = startHour; hour <= BOOKING_END_HOUR; hour += 1) {
+				const value = `${String(hour).padStart(2, "0")}:00`;
+				const option = document.createElement("option");
+				option.value = value;
+				option.textContent = formatTimeLabel(value);
+				bookingTimeInput.appendChild(option);
+			}
+
+			const isPreferredAvailable = Array.from(bookingTimeInput.options).some((option) => option.value === preferredTime);
+			if (isPreferredAvailable) {
+				bookingTimeInput.value = preferredTime;
+			} else {
+				bookingTimeInput.selectedIndex = 0;
+			}
+		};
+
+		const applyBookingDateTimeRules = () => {
+			if (!bookingDateInput || !bookingTimeInput) {
+				return;
+			}
+
+			const now = new Date();
+			const nextAvailableSlot = getNextAvailableBookingSlot();
+			const todayDate = formatDateInput(now);
+			const currentSelectedTime = bookingTimeInput.value;
+
+			bookingDateInput.min = todayDate;
+
+			if (!bookingDateInput.value || bookingDateInput.value < todayDate) {
+				bookingDateInput.value = formatDateInput(nextAvailableSlot);
+			}
+
+			buildBookingTimeOptions(bookingDateInput.value, currentSelectedTime || formatTimeInput(nextAvailableSlot));
+		};
+
+		const openPackageModal = (card) => {
+			if (!card || !packageModal || !modalTitle || !modalList || !modalPrice || !bookingPrice || !modalMeta) {
+				return;
+			}
+
+			const titleText = card.querySelector(".package-title")?.textContent?.trim() || "Selected Package";
+			const metaText = card.querySelector(".package-meta")?.textContent?.trim().replace(/\s+/g, " ") || "";
+			const priceText = card.querySelector(".price-new")?.textContent?.trim() || "RM 0";
+			const listItems = card.querySelectorAll(".package-list li");
+
+			modalTitle.textContent = titleText;
+			modalMeta.textContent = metaText;
+			modalPrice.textContent = priceText;
+			bookingPrice.value = priceText;
+			applyBookingDateTimeRules();
+
+			modalList.innerHTML = "";
+			listItems.forEach((item) => {
+				const li = document.createElement("li");
+				li.textContent = item.textContent;
+				modalList.appendChild(li);
+			});
+
+			packageModal.classList.add("is-open");
+			packageModal.setAttribute("aria-hidden", "false");
+			document.body.style.overflow = "hidden";
+			modalOpen = true;
+		};
+
+		const closePackageModal = () => {
+			if (!packageModal || !modalOpen) {
+				return;
+			}
+
+			packageModal.classList.remove("is-open");
+			packageModal.setAttribute("aria-hidden", "true");
+			document.body.style.overflow = "";
+			modalOpen = false;
+		};
+
+		if (featureReelRows.length) {
+			featureReelRows.forEach((rowTrack, rowIndex) => {
+				const rowScenes = [...featureReelScenes, ...featureReelScenes];
+				rowTrack.innerHTML = rowScenes
+					.map((scene) => `
+						<div class="card" style="background-image:url('${scene.image}')"></div>
+					`)
+					.join("");
+				rowTrack.style.animationDirection = rowIndex === 0 ? "normal" : "reverse";
+				rowTrack.style.animationDuration = rowIndex === 0 ? "5s" : "4.2s";
+			});
+		}
+
+		if (bannerCarImage && carModelSelect) {
+			const updateBannerCar = () => {
+				if (bannerCarSwitching) {
+					return;
+				}
+
+				const selectedModel = carModelSelect.value;
+				const imagePath = carModelImages[selectedModel] || carModelImages.staria;
+				const modelText = carModelSelect.options[carModelSelect.selectedIndex].text;
+
+				if (bannerCarImage.getAttribute("src") === imagePath) {
+					bannerCarImage.alt = `${modelText} rental car`;
+					return;
+				}
+
+				bannerCarSwitching = true;
+				bannerCarImage.classList.add("is-exiting");
+
+				window.setTimeout(() => {
+					bannerCarImage.src = imagePath;
+					bannerCarImage.alt = `${modelText} rental car`;
+					bannerCarImage.classList.remove("is-exiting");
+					bannerCarImage.classList.add("is-entering");
+
+					requestAnimationFrame(() => {
+						bannerCarImage.classList.remove("is-entering");
+						bannerCarSwitching = false;
+					});
+				}, 180);
+			};
+
+			carModelSelect.addEventListener("change", updateBannerCar);
+			updateBannerCar();
+		}
+
+		if (packageButtons.length && packageModal) {
+			packageButtons.forEach((button) => {
+				button.addEventListener("click", (event) => {
+					event.preventDefault();
+					openPackageModal(button.closest(".package-card"));
+				});
+			});
+
+			packageModal.addEventListener("click", (event) => {
+				const target = event.target;
+				if (target instanceof HTMLElement && target.hasAttribute("data-close-modal")) {
+					closePackageModal();
+				}
+			});
+
+			document.addEventListener("keydown", (event) => {
+				if (event.key === "Escape") {
+					closePackageModal();
+				}
+			});
+
+			if (modalBookingForm) {
+				if (bookingDateInput) {
+					bookingDateInput.addEventListener("change", applyBookingDateTimeRules);
+				}
+
+				if (bookingTimeInput) {
+					bookingTimeInput.addEventListener("change", applyBookingDateTimeRules);
+				}
+
+				modalBookingForm.addEventListener("submit", (event) => {
+					event.preventDefault();
+
+					const selectedPackage = modalTitle?.textContent?.trim() || "Package";
+					const selectedMeta = modalMeta?.textContent?.trim() || "";
+					const selectedPrice = bookingPrice?.value?.trim() || "RM 0";
+					const bookingDate = bookingDateInput?.value || "-";
+					const bookingTime = bookingTimeInput?.value || "-";
+
+					if (bookingDateInput && bookingTimeInput) {
+						const pickedDateTime = new Date(`${bookingDateInput.value}T${bookingTimeInput.value}`);
+						const now = new Date();
+						if (Number.isNaN(pickedDateTime.getTime()) || pickedDateTime < now) {
+							alert("Please choose a valid booking date and time (current or future).");
+							applyBookingDateTimeRules();
+							return;
+						}
+					}
+
+					const whatsappMessage = [
+						"Hi Langkawi by Ammar, saya nak book package ini:",
+						`Package: ${selectedPackage}`,
+						selectedMeta ? `Details: ${selectedMeta}` : "",
+						`Date: ${bookingDate}`,
+						`Time: ${bookingTime}`,
+						`Price: ${selectedPrice}`
+					].filter(Boolean).join("\n");
+
+					const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+					window.open(whatsappUrl, "_blank", "noopener");
+					closePackageModal();
+				});
+			}
+		}
+
+		if (packagesCarousel && arrowButtons.length) {
+			arrowButtons.forEach((button) => {
+				button.addEventListener("click", () => {
+					const direction = button.dataset.dir === "right" ? 1 : -1;
+					packagesCarousel.scrollBy({
+						left: direction * 280,
+						behavior: "smooth"
+					});
+				});
+			});
+		}
+
+		const navMenuLinks = document.querySelectorAll(".menu a");
+		const navMenu = document.querySelector(".menu");
+		const navIndicator = document.querySelector(".menu-indicator");
+
+		const updateMenuIndicator = () => {
+			if (!navMenu || !navIndicator || window.innerWidth <= 900) {
+				if (navIndicator) {
+					navIndicator.style.opacity = "0";
+				}
+				return;
+			}
+
+			const activeLink = navMenu.querySelector("a.active");
+			if (!activeLink) {
+				navIndicator.style.opacity = "0";
+				return;
+			}
+
+			const menuRect = navMenu.getBoundingClientRect();
+			const linkRect = activeLink.getBoundingClientRect();
+			const x = linkRect.left - menuRect.left;
+			const y = linkRect.top - menuRect.top;
+
+			navIndicator.style.width = `${linkRect.width}px`;
+			navIndicator.style.height = `${linkRect.height}px`;
+			navIndicator.style.transform = `translate(${x}px, ${y}px)`;
+			navIndicator.style.opacity = "1";
+		};
+
+		const setActiveMenuLink = (targetHash = "") => {
+			if (!navMenuLinks.length) {
+				return;
+			}
+
+			const activeHash = targetHash || window.location.hash || "#";
+			let matchedLink = null;
+
+			navMenuLinks.forEach((link) => {
+				const href = link.getAttribute("href") || "";
+				if (href === activeHash) {
+					matchedLink = link;
+				}
+				link.classList.remove("active");
+			});
+
+			if (!matchedLink) {
+				matchedLink = Array.from(navMenuLinks).find((link) => (link.getAttribute("href") || "") === "#") || null;
+			}
+
+			if (matchedLink) {
+				matchedLink.classList.add("active");
+			}
+
+			window.requestAnimationFrame(updateMenuIndicator);
+		};
+
+		navMenuLinks.forEach((link) => {
+			link.addEventListener("click", () => {
+				const href = link.getAttribute("href") || "#";
+				window.requestAnimationFrame(() => setActiveMenuLink(href));
+			});
+		});
+
+		window.addEventListener("hashchange", () => {
+			setActiveMenuLink(window.location.hash);
+		});
+
+		window.addEventListener("resize", () => {
+			window.requestAnimationFrame(updateMenuIndicator);
+		});
+
+		setActiveMenuLink(window.location.hash);
+	</script>
+</body>
+</html>
