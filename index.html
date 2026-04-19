@@ -521,18 +521,18 @@
                         </div>
                         <div>
                             <p class="text-xs rental-label mb-1">Pickup Date & Time</p>
-                            <div class="grid grid-cols-2 gap-2">
-                                <input id="pickupDate" class="rental-input text-lg" type="date" value="2026-06-12">
-                                <select id="pickupTime" class="car-select text-lg">
+                            <div class="flex flex-col gap-2">
+                                <input id="pickupDate" class="rental-input text-base" type="date" value="2026-06-12">
+                                <select id="pickupTime" class="car-select text-base">
                                     <option value="10:00" selected>10:00</option>
                                 </select>
                             </div>
                         </div>
                         <div>
                             <p class="text-xs rental-label mb-1">Return Date & Time</p>
-                            <div class="grid grid-cols-2 gap-2">
-                                <input id="returnDate" class="rental-input text-lg" type="date" value="2026-06-15">
-                                <select id="returnTime" class="car-select text-lg">
+                            <div class="flex flex-col gap-2">
+                                <input id="returnDate" class="rental-input text-base" type="date" value="2026-06-15">
+                                <select id="returnTime" class="car-select text-base">
                                     <option value="10:00" selected>10:00</option>
                                 </select>
                             </div>
@@ -554,27 +554,52 @@
                 <span class="text-orange-400 text-2xl">★★★★★</span>
                 <span class="ml-2 text-lg font-bold text-gray-600">4.9/5 Average Rating</span>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-orange-50 rounded-2xl p-6 shadow-md flex flex-col">
-                    <p class="text-lg font-semibold text-[#1A1A1A] mb-2">"Amazing experience! The tour was well organized and the guide was super friendly."</p>
-                    <div class="flex items-center gap-2 mt-auto">
-                        <div class="w-8 h-8 rounded-full bg-orange-200 flex items-center justify-center font-bold text-orange-600">A</div>
-                        <span class="font-bold text-[#1A1A1A]">Aina</span>
+            <div class="relative">
+                <div class="overflow-hidden rounded-2xl">
+                    <div id="reviewTrack" class="flex transition-transform duration-500 ease-in-out">
+                        <div class="min-w-full bg-orange-50 rounded-2xl p-6 shadow-md flex flex-col">
+                            <span class="text-orange-400 text-xl mb-3">★★★★★</span>
+                            <p class="text-lg font-semibold text-[#1A1A1A] mb-4">"Amazing experience! The tour was well organized and the guide was super friendly."</p>
+                            <div class="flex items-center gap-2 mt-auto">
+                                <div class="w-10 h-10 rounded-full bg-orange-200 flex items-center justify-center font-bold text-orange-600 text-lg">A</div>
+                                <div>
+                                    <p class="font-bold text-[#1A1A1A]">Aina</p>
+                                    <p class="text-xs text-gray-500">Private Tour</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="min-w-full bg-orange-50 rounded-2xl p-6 shadow-md flex flex-col">
+                            <span class="text-orange-400 text-xl mb-3">★★★★★</span>
+                            <p class="text-lg font-semibold text-[#1A1A1A] mb-4">"Booking was so easy and the car rental was in perfect condition. Highly recommended!"</p>
+                            <div class="flex items-center gap-2 mt-auto">
+                                <div class="w-10 h-10 rounded-full bg-orange-200 flex items-center justify-center font-bold text-orange-600 text-lg">M</div>
+                                <div>
+                                    <p class="font-bold text-[#1A1A1A]">Mira</p>
+                                    <p class="text-xs text-gray-500">Car Rental</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="min-w-full bg-orange-50 rounded-2xl p-6 shadow-md flex flex-col">
+                            <span class="text-orange-400 text-xl mb-3">★★★★★</span>
+                            <p class="text-lg font-semibold text-[#1A1A1A] mb-4">"Loved the sunset cruise! Will definitely book with LangkawiScape again."</p>
+                            <div class="flex items-center gap-2 mt-auto">
+                                <div class="w-10 h-10 rounded-full bg-orange-200 flex items-center justify-center font-bold text-orange-600 text-lg">J</div>
+                                <div>
+                                    <p class="font-bold text-[#1A1A1A]">Johan</p>
+                                    <p class="text-xs text-gray-500">Sunset Cruise</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="bg-orange-50 rounded-2xl p-6 shadow-md flex flex-col">
-                    <p class="text-lg font-semibold text-[#1A1A1A] mb-2">"Booking was so easy and the car rental was in perfect condition. Highly recommended!"</p>
-                    <div class="flex items-center gap-2 mt-auto">
-                        <div class="w-8 h-8 rounded-full bg-orange-200 flex items-center justify-center font-bold text-orange-600">M</div>
-                        <span class="font-bold text-[#1A1A1A]">Mira</span>
+                <div class="flex items-center justify-center gap-4 mt-6">
+                    <button id="reviewPrev" class="w-10 h-10 rounded-full bg-orange-100 hover:bg-orange-200 font-bold text-orange-600 flex items-center justify-center transition" aria-label="Previous">&#8592;</button>
+                    <div id="reviewDots" class="flex gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-orange-500 review-dot"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-gray-300 review-dot"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-gray-300 review-dot"></span>
                     </div>
-                </div>
-                <div class="bg-orange-50 rounded-2xl p-6 shadow-md flex flex-col">
-                    <p class="text-lg font-semibold text-[#1A1A1A] mb-2">"Loved the sunset cruise! Will definitely book with LangkawiScape again."</p>
-                    <div class="flex items-center gap-2 mt-auto">
-                        <div class="w-8 h-8 rounded-full bg-orange-200 flex items-center justify-center font-bold text-orange-600">J</div>
-                        <span class="font-bold text-[#1A1A1A]">Johan</span>
-                    </div>
+                    <button id="reviewNext" class="w-10 h-10 rounded-full bg-orange-100 hover:bg-orange-200 font-bold text-orange-600 flex items-center justify-center transition" aria-label="Next">&#8594;</button>
                 </div>
             </div>
         </div>
@@ -731,26 +756,39 @@
 
         const packageMetaByTitle = {
             'Private Tour Langkawi': {
+                price: 200,
+                priceLabel: 'RM200 / pax',
                 highlights: ['Fully private trip plan', 'Custom stops and timing', 'Flexible itinerary flow'],
                 includes: ['Private guide', 'Pickup and drop-off', 'Transport support']
             },
             'Mangrove Tour': {
+                price: 349,
+                priceLabel: 'RM349 / pax',
                 highlights: ['Mangrove cave exploration', 'Limestone cliff scenery', 'Wildlife and eagle sighting'],
                 includes: ['Boat cruise', 'Nature guide', 'Safety equipment']
             },
             'Sunset Cruise': {
+                price: 249,
+                priceLabel: 'RM249 / pax',
                 highlights: ['Golden hour views', 'Sunset photo session', 'Relaxing evening cruise'],
                 includes: ['Cruise ticket', 'Dinner meal', 'Welcome drink']
             },
             '3 In 1 Activities': {
+                price: 349,
+                priceLabel: 'RM349 / pax',
                 highlights: ['Jet car adventure', 'Parasailing session', 'Banana boat ride'],
                 includes: ['Safety briefing', 'Activity gear', 'Instructor support']
             },
             'JetSki Tour Packages': {
+                price: 374.50,
+                priceLabel: 'RM749 / 2 pax',
+                minPax: 2,
                 highlights: ['Open-sea route', 'Island checkpoints', 'Guided safe riding route'],
                 includes: ['Jet ski unit', 'Certified guide', 'Life jacket']
             },
             'ATV Ride': {
+                price: 249,
+                priceLabel: 'RM249 / 1 ATV',
                 highlights: ['Off-road scenic track', 'Photo and video stops', 'Guided adventure route'],
                 includes: ['ATV unit', 'Safety helmet', 'Guide assistance']
             }
@@ -895,23 +933,13 @@
             return `RM${value.toFixed(2)}`;
         }
 
-        function setModalMinDate() {
-            if (!modalBookingDate) return;
-            const now = new Date();
-            const pad = (n) => String(n).padStart(2, '0');
-            const today = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
-            modalBookingDate.min = today;
-            if (!modalBookingDate.value || modalBookingDate.value < today) {
-                modalBookingDate.value = today;
-            }
-        }
-
-        function populateModalBookingTimes() {
+        function populateModalBookingTimes(minMins) {
             if (!modalBookingTime) return;
-            const preferredValue = modalBookingTime.value || '10:00';
+            const safeMin = (minMins !== undefined) ? Math.max(0, Math.min(1380, minMins)) : 0;
+            const prevValue = modalBookingTime.value || '10:00';
             modalBookingTime.innerHTML = '';
 
-            for (let mins = 0; mins <= 1380; mins += 60) {
+            for (let mins = safeMin; mins <= 1380; mins += 60) {
                 const option = document.createElement('option');
                 const value = minutesToTime(mins);
                 option.value = value;
@@ -919,35 +947,55 @@
                 modalBookingTime.appendChild(option);
             }
 
-            modalBookingTime.value = preferredValue;
-            if (modalBookingTime.value !== preferredValue) {
-                modalBookingTime.value = '10:00';
+            if (prevValue && timeToMinutes(prevValue) >= safeMin) {
+                modalBookingTime.value = prevValue;
+            } else {
+                modalBookingTime.selectedIndex = 0;
+            }
+        }
+
+        function enforceModalDateTime() {
+            if (!modalBookingDate) return;
+            const { date: today, time: nowTime } = getNowLocalDateTimeParts();
+            modalBookingDate.min = today;
+            if (!modalBookingDate.value || modalBookingDate.value < today) {
+                modalBookingDate.value = today;
+            }
+            if (modalBookingDate.value === today) {
+                const nowMins = roundUpToNextHour(timeToMinutes(nowTime));
+                populateModalBookingTimes(nowMins);
+            } else {
+                populateModalBookingTimes(0);
             }
         }
 
         function refreshModalTotal() {
             if (!modalBookingPax || !modalTotalPrice || !modalPackagePrice || !modalBookingSummary) return;
-            const pax = Math.max(1, Number(modalBookingPax.value) || 1);
+            const meta = getPackageMeta(selectedPackage.title);
+            const minPax = meta.minPax || 1;
+            let pax = Math.max(minPax, Number(modalBookingPax.value) || minPax);
             modalBookingPax.value = String(pax);
-            const total = selectedPackage.price * pax;
-            modalPackagePrice.textContent = formatMoney(selectedPackage.price);
+            modalBookingPax.min = String(minPax);
+            const pricePerPax = meta.price || selectedPackage.price || 0;
+            const total = pricePerPax * pax;
+            modalPackagePrice.textContent = meta.priceLabel || formatMoney(pricePerPax);
             modalTotalPrice.textContent = formatMoney(total);
 
             const bookingDateText = modalBookingDate && modalBookingDate.value ? modalBookingDate.value : '-';
             const bookingTimeText = modalBookingTime && modalBookingTime.value ? modalBookingTime.value : '-';
-            modalBookingSummary.textContent = `${selectedPackage.title} | Date: ${bookingDateText} | Time: ${bookingTimeText} | Total: ${formatMoney(total)}`;
+            modalBookingSummary.textContent = `${selectedPackage.title} | Date: ${bookingDateText} | Time: ${bookingTimeText} | ${pax} pax | Total: ${formatMoney(total)}`;
         }
 
         function openPackageModal(pkg) {
             if (!packageModalOverlay || !modalPackageTitle || !modalPackageLocation || !modalPackageRating) return;
-            selectedPackage = pkg;
+            const meta = getPackageMeta(pkg.title);
+            selectedPackage = { ...pkg, price: meta.price || pkg.price };
             modalPackageTitle.textContent = pkg.title;
             modalPackageLocation.textContent = pkg.location;
             modalPackageRating.textContent = pkg.rating;
-            const packageMeta = getPackageMeta(pkg.title);
-            renderModalList(modalHighlightsList, packageMeta.highlights);
-            renderModalList(modalIncludesList, packageMeta.includes);
-            setModalMinDate();
+            renderModalList(modalHighlightsList, meta.highlights);
+            renderModalList(modalIncludesList, meta.includes);
+            enforceModalDateTime();
             refreshModalTotal();
             packageModalOverlay.hidden = false;
             document.body.style.overflow = 'hidden';
@@ -1064,12 +1112,13 @@
                     return;
                 }
                 updateRentalFeedback();
-                if (rentalSearchFeedback) {
-                    const selectedKey = rentalTypeSelect ? rentalTypeSelect.value : '';
-                    const rate = carRateByType[selectedKey];
-                    const lowPeakText = rate ? ` | Low RM${rate.low.toFixed(2)} / Peak RM${rate.peak.toFixed(2)}` : '';
-                    rentalSearchFeedback.textContent += ` | Deals found, proceed to booking.${lowPeakText}`;
-                }
+                const typeLabel = rentalTypeSelect ? rentalTypeSelect.options[rentalTypeSelect.selectedIndex].text : '-';
+                const pickup = pickupDate && pickupTime ? `${pickupDate.value} ${pickupTime.value}` : '-';
+                const ret = returnDate && returnTime ? `${returnDate.value} ${returnTime.value}` : '-';
+                const rate = rentalTypeSelect ? carRateByType[rentalTypeSelect.value] : null;
+                const rateText = rate ? `Low RM${rate.low.toFixed(2)} / Peak RM${rate.peak.toFixed(2)} per day` : '';
+                const msg = `Hello LangkawiScape! I'd like to book a car rental:\n\n🚗 Car: ${typeLabel}\n📅 Pickup: ${pickup}\n📅 Return: ${ret}\n💰 Rate: ${rateText}\n\nPlease confirm availability. Thank you!`;
+                window.open(`https://wa.me/60123456789?text=${encodeURIComponent(msg)}`, '_blank');
             });
         }
 
@@ -1106,8 +1155,12 @@
             });
         }
 
+        // Modal booking date change → re-enforce time
         if (modalBookingDate) {
-            modalBookingDate.addEventListener('change', refreshModalTotal);
+            modalBookingDate.addEventListener('change', () => {
+                enforceModalDateTime();
+                refreshModalTotal();
+            });
         }
 
         if (modalBookingTime) {
@@ -1118,14 +1171,26 @@
             modalBookingPax.addEventListener('input', refreshModalTotal);
         }
 
-        if (confirmPackageBookingBtn) {
-            confirmPackageBookingBtn.addEventListener('click', () => {
-                refreshModalTotal();
-                if (modalBookingSummary) {
-                    modalBookingSummary.textContent += ' | Booking request received.';
-                }
+        // Review carousel
+        const reviewTrack = document.getElementById('reviewTrack');
+        const reviewPrev = document.getElementById('reviewPrev');
+        const reviewNext = document.getElementById('reviewNext');
+        const reviewDots = document.querySelectorAll('.review-dot');
+        let reviewIndex = 0;
+        const reviewTotal = reviewDots.length;
+
+        function goToReview(idx) {
+            reviewIndex = (idx + reviewTotal) % reviewTotal;
+            if (reviewTrack) reviewTrack.style.transform = `translateX(-${reviewIndex * 100}%)`;
+            reviewDots.forEach((dot, i) => {
+                dot.classList.toggle('bg-orange-500', i === reviewIndex);
+                dot.classList.toggle('bg-gray-300', i !== reviewIndex);
             });
         }
+
+        if (reviewPrev) reviewPrev.addEventListener('click', () => goToReview(reviewIndex - 1));
+        if (reviewNext) reviewNext.addEventListener('click', () => goToReview(reviewIndex + 1));
+        reviewDots.forEach((dot, i) => dot.addEventListener('click', () => goToReview(i)));
 
         window.addEventListener('keydown', (event) => {
             if (event.key === 'Escape') {
@@ -1158,7 +1223,7 @@
         }
 
         enforceMinDateTimeConstraints();
-        populateModalBookingTimes();
+        enforceModalDateTime();
         updateRateInfo();
         updateRentalFeedback();
     </script>
