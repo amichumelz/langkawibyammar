@@ -75,6 +75,374 @@
                 filter: brightness(1.08);
             }
         }
+
+        /* Slider untuk Why Us pada mobile */
+        @media (max-width: 768px) {
+            .why-us-slider {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 1rem;
+                padding-bottom: 1rem;
+                scrollbar-width: none; /* Hide scrollbar Firefox */
+            }
+            .why-us-slider::-webkit-scrollbar { display: none; } /* Hide scrollbar Chrome/Safari */
+            .why-us-card {
+                min-width: 85%;
+                scroll-snap-align: center;
+            }
+        }
+
+        /* Pastikan modal tidak terkeluar screen */
+        .package-modal {
+            width: min(720px, 95%);
+            margin: auto;
+        }
+
+        /* Style untuk Radio Options dalam Modal */
+        .sub-package-option {
+            border: 2px solid #e5e7eb;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .sub-package-option.active {
+            border-color: #f97316;
+            background-color: #fff7ed;
+        }
+
+        /* === Premium Modal Redesign (Orange + Black + White) === */
+        .package-modal {
+            padding: 0 !important;
+            overflow: hidden;
+        }
+        .pkg-accent-bar {
+            height: 5px;
+            background: linear-gradient(90deg, #fb923c 0%, #f97316 45%, #ea580c 100%);
+        }
+        .pkg-modal-inner {
+            padding: 1.6rem 1.5rem 1.5rem;
+            max-height: calc(92vh - 5px);
+            overflow-y: auto;
+        }
+
+        /* Header block */
+        .pkg-header-v2 {
+            position: relative;
+            padding-right: 3rem;
+            padding-bottom: 1.1rem;
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 1.25rem;
+        }
+        .pkg-badge-v2 {
+            display: inline-block;
+            color: #f97316;
+            border: 1.5px solid #f97316;
+            border-radius: 9999px;
+            padding: 0.3rem 0.95rem;
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            background: transparent;
+        }
+        .pkg-title-v2 {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: #0a0a0a;
+            margin-top: 0.75rem;
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+        }
+        .pkg-meta-line {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #6b7280;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-top: 0.65rem;
+        }
+        .pkg-intro-v2 {
+            font-size: 0.9rem;
+            color: #4b5563;
+            margin-top: 0.55rem;
+            line-height: 1.55;
+        }
+        .pkg-close-v2 {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: 9999px;
+            background: #0a0a0a;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            line-height: 1;
+        }
+        .pkg-close-v2:hover {
+            background: #f97316;
+            transform: rotate(90deg);
+        }
+
+        /* Section label with orange bar */
+        .pkg-label-v2 {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-size: 0.68rem;
+            font-weight: 800;
+            color: #f97316;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            margin-bottom: 0.85rem;
+        }
+        .pkg-label-v2::before {
+            content: "";
+            width: 18px;
+            height: 2px;
+            background: #f97316;
+        }
+
+        /* Tour Highlights block */
+        .pkg-highlights-v2 {
+            background: #fafafa;
+            border: 1px solid #f3f4f6;
+            border-radius: 1rem;
+            padding: 1.05rem 1.2rem;
+            margin-bottom: 1.35rem;
+        }
+        .pkg-highlights-ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.45rem;
+        }
+        @media (min-width: 640px) {
+            .pkg-highlights-ul {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.55rem 1.2rem;
+            }
+        }
+        .pkg-highlights-ul li {
+            position: relative;
+            padding-left: 1.05rem;
+            font-size: 0.9rem;
+            color: #1a1a1a;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        .pkg-highlights-ul li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.55rem;
+            width: 6px;
+            height: 6px;
+            background: #f97316;
+            border-radius: 9999px;
+        }
+
+        /* Current selection pill */
+        .pkg-selection-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            background: #0a0a0a;
+            color: #ffffff;
+            padding: 0.45rem 0.95rem;
+            border-radius: 9999px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            margin-bottom: 1rem;
+        }
+        .pkg-selection-indicator .dot {
+            width: 7px;
+            height: 7px;
+            background: #f97316;
+            border-radius: 9999px;
+            display: inline-block;
+        }
+        .pkg-selection-indicator strong {
+            color: #f97316;
+            font-weight: 800;
+        }
+
+        /* Option rows - horizontal stack, NOT grid */
+        .pkg-options-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            margin-bottom: 1.35rem;
+        }
+        .pkg-option-row {
+            position: relative;
+            border: 2px solid #e5e7eb;
+            background: #ffffff;
+            border-radius: 1rem;
+            padding: 1.05rem 1.15rem 1.05rem 1.35rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            overflow: hidden;
+        }
+        .pkg-option-row::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: transparent;
+            transition: background 0.2s;
+        }
+        .pkg-option-row:hover {
+            border-color: #d1d5db;
+        }
+        .pkg-option-row.active {
+            border-color: #f97316;
+            background: #fff7ed;
+        }
+        .pkg-option-row.active::before {
+            background: #f97316;
+        }
+        .pkg-row-top {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+        }
+        .pkg-row-num {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.55rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: #6b7280;
+            background: #ffffff;
+            transition: all 0.2s;
+        }
+        .pkg-option-row.active .pkg-row-num {
+            background: #0a0a0a;
+            border-color: #0a0a0a;
+            color: #f97316;
+        }
+        .pkg-row-name-wrap {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        .pkg-row-name {
+            font-size: 1.02rem;
+            font-weight: 800;
+            color: #0a0a0a;
+            line-height: 1.2;
+        }
+        .pkg-selected-chip-v2 {
+            display: none;
+            background: #f97316;
+            color: #ffffff;
+            font-size: 0.56rem;
+            letter-spacing: 0.22em;
+            font-weight: 800;
+            padding: 0.22rem 0.55rem;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            line-height: 1;
+            align-self: flex-start;
+        }
+        .pkg-option-row.active .pkg-selected-chip-v2 {
+            display: inline-block;
+        }
+        .pkg-row-price {
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: #0a0a0a;
+            white-space: nowrap;
+            margin-left: auto;
+        }
+        .pkg-option-row.active .pkg-row-price {
+            color: #f97316;
+        }
+        .pkg-row-bullets {
+            list-style: none;
+            padding: 0;
+            margin: 0.85rem 0 0 calc(36px + 0.9rem);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+        }
+        @media (max-width: 640px) {
+            .pkg-row-bullets {
+                margin-left: 0;
+            }
+        }
+        .pkg-row-bullets li {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #4b5563;
+            background: #f3f4f6;
+            padding: 0.3rem 0.7rem;
+            border-radius: 9999px;
+            line-height: 1.3;
+            white-space: nowrap;
+        }
+        .pkg-option-row.active .pkg-row-bullets li {
+            background: #ffffff;
+            color: #1a1a1a;
+            border: 1px solid #fed7aa;
+        }
+
+        /* Info rows (Includes / Bonus) */
+        .pkg-info-rows {
+            border-top: 1px solid #e5e7eb;
+            margin-bottom: 1.35rem;
+        }
+        .pkg-info-row-v2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.9rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .pkg-info-row-v2:last-child {
+            border-bottom: none;
+        }
+        .pkg-info-label-v2 {
+            font-size: 0.68rem;
+            font-weight: 800;
+            color: #f97316;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+        .pkg-info-value-v2 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #0a0a0a;
+            text-align: right;
+        }
+
+        /* Booking section header */
+        .pkg-booking-block {
+            border-top: 1px solid #e5e7eb;
+            padding-top: 1.25rem;
+        }
         @keyframes heroGlitchJolt {
             0%,
             88%,
@@ -365,26 +733,25 @@
                     <p class="text-white/70 text-lg max-w-2xl">We keep the planning simple, the experiences local, and the booking process fast so you can focus on the trip instead of the details.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                    <div class="rounded-[2rem] bg-white/8 border border-white/10 p-6 backdrop-blur-sm">
+                <div class="flex md:grid md:grid-cols-3 gap-5 overflow-x-auto snap-x snap-mandatory pb-6 md:pb-0 no-scrollbar">
+                    <div class="min-w-[85%] md:min-w-0 snap-center rounded-[2rem] bg-white/8 border border-white/10 p-6 backdrop-blur-sm">
                         <p class="text-orange-400 text-sm font-bold uppercase tracking-[0.2em] mb-3">01</p>
                         <h3 class="text-2xl font-bold mb-3">Local Experts</h3>
                         <p class="text-white/70 leading-relaxed">Get curated Langkawi trips from people who know the island, the timing, and the best spots to visit.</p>
                     </div>
-                    <div class="rounded-[2rem] bg-white/8 border border-white/10 p-6 backdrop-blur-sm">
+                    <div class="min-w-[85%] md:min-w-0 snap-center rounded-[2rem] bg-white/8 border border-white/10 p-6 backdrop-blur-sm">
                         <p class="text-orange-400 text-sm font-bold uppercase tracking-[0.2em] mb-3">02</p>
                         <h3 class="text-2xl font-bold mb-3">Flexible Booking</h3>
                         <p class="text-white/70 leading-relaxed">Choose your date, time, and pax in a few clicks. Package and rental booking stay simple on mobile or desktop.</p>
                     </div>
-                    <div class="rounded-[2rem] bg-white/8 border border-white/10 p-6 backdrop-blur-sm">
+                    <div class="min-w-[85%] md:min-w-0 snap-center rounded-[2rem] bg-white/8 border border-white/10 p-6 backdrop-blur-sm">
                         <p class="text-orange-400 text-sm font-bold uppercase tracking-[0.2em] mb-3">03</p>
                         <h3 class="text-2xl font-bold mb-3">Trusted Value</h3>
                         <p class="text-white/70 leading-relaxed">Clear pricing, verified reviews, and practical trip options help you book with confidence and avoid surprises.</p>
                     </div>
                 </div>
-            </div>
+                </div>
         </div>
-
     </section>
 
 
@@ -627,61 +994,78 @@
 
     <div id="packageModalOverlay" class="package-modal-overlay" hidden>
         <div class="package-modal">
-            <div class="flex items-start justify-between gap-4 mb-4">
+            <!-- Top orange accent bar -->
+            <div class="pkg-accent-bar"></div>
+
+            <div class="pkg-modal-inner">
+                <!-- Header -->
+                <div class="pkg-header-v2">
+                    <span id="modalPackageBadge" class="pkg-badge-v2">TOUR PACKAGE</span>
+                    <h3 id="modalPackageTitle" class="pkg-title-v2">Package Title</h3>
+                    <p id="modalPackageMetaLine" class="pkg-meta-line" hidden>Multiple Options | River Cruise | Island Highlights</p>
+                    <p id="modalPackageIntro" class="pkg-intro-v2" hidden>Choose your package option based on your preference.</p>
+                    <button id="closePackageModalBtn" class="pkg-close-v2" aria-label="Close modal">&times;</button>
+                </div>
+
+                <!-- Hidden compatibility fields -->
+                <p id="modalPackageLocation" class="hidden">Location</p>
+                <p id="modalPackageRating" class="hidden">★★★★★</p>
+                <p id="modalPackagePrice" class="hidden">RM0.00</p>
+                <p id="modalTotalPrice" class="hidden">RM0.00</p>
+                <ul id="modalIncludesList" class="hidden"></ul>
+                <span id="modalPackageSubtitle" class="hidden"></span>
+
+                <!-- Current selection indicator -->
+                <div id="pkgSelectionIndicator" class="pkg-selection-indicator">
+                    <span class="dot"></span>
+                    <span>Currently selected: <strong id="pkgSelectionPrice">RM0</strong></span>
+                </div>
+
+                <!-- Tour Highlights -->
+                <div id="pkgHighlightsBlock" class="pkg-highlights-v2">
+                    <p class="pkg-label-v2">Tour Highlights</p>
+                    <ul id="modalHighlightsList" class="pkg-highlights-ul"></ul>
+                </div>
+
+                <!-- Package Options Stack -->
                 <div>
-                    <p class="text-xs uppercase tracking-[0.2em] text-gray-500 font-bold">Package Details</p>
-                    <h3 id="modalPackageTitle" class="text-3xl font-extrabold text-[#1A1A1A] mt-1">Package Title</h3>
-                    <p id="modalPackageLocation" class="text-gray-500 font-medium italic mt-1">Location</p>
+                    <p class="pkg-label-v2">Package Options</p>
+                    <div id="pkgOptionsGrid" class="pkg-options-stack"></div>
                 </div>
-                <button id="closePackageModalBtn" class="text-gray-500 hover:text-black font-extrabold text-2xl leading-none" aria-label="Close modal">&times;</button>
-            </div>
 
-            <div class="grid grid-cols-3 gap-2 md:gap-3 mb-5">
-                <div class="bg-orange-50 rounded-2xl p-4">
-                    <p class="text-xs font-bold uppercase text-gray-500 mb-1">Rating</p>
-                    <p id="modalPackageRating" class="text-lg font-extrabold text-orange-500">★★★★★</p>
+                <!-- Includes & Bonus rows -->
+                <div class="pkg-info-rows">
+                    <div class="pkg-info-row-v2">
+                        <span class="pkg-info-label-v2">Includes</span>
+                        <span id="modalIncludesText" class="pkg-info-value-v2">Vehicle | Driver | Petrol</span>
+                    </div>
+                    <div class="pkg-info-row-v2">
+                        <span class="pkg-info-label-v2">Bonus</span>
+                        <span id="modalBonusText" class="pkg-info-value-v2">Pickup from airport or hotel</span>
+                    </div>
                 </div>
-                <div class="bg-orange-50 rounded-2xl p-4">
-                    <p class="text-xs font-bold uppercase text-gray-500 mb-1">Price / Pax</p>
-                    <p id="modalPackagePrice" class="text-lg font-extrabold text-[#1A1A1A]">RM0.00</p>
-                </div>
-                <div class="bg-orange-50 rounded-2xl p-4">
-                    <p class="text-xs font-bold uppercase text-gray-500 mb-1">Total Price</p>
-                    <p id="modalTotalPrice" class="text-lg font-extrabold text-[#1A1A1A]">RM0.00</p>
-                </div>
-            </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
-                <div class="bg-gray-50 rounded-2xl p-4">
-                    <p class="text-xs font-bold uppercase text-gray-500 mb-2">Tour Highlights</p>
-                    <ul id="modalHighlightsList" class="text-sm text-gray-700 font-medium space-y-1 list-disc pl-5">
-                        <li>Scenic island views</li>
-                    </ul>
-                </div>
-                <div class="bg-gray-50 rounded-2xl p-4">
-                    <p class="text-xs font-bold uppercase text-gray-500 mb-2">Includes</p>
-                    <ul id="modalIncludesList" class="text-sm text-gray-700 font-medium space-y-1 list-disc pl-5">
-                        <li>Guide and safety briefing</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 items-end">
-                <div class="deal-field">
-                    <p class="deal-field-label text-xs font-bold uppercase text-gray-500">Booking Date</p>
-                    <input id="modalBookingDate" class="deal-input" type="date">
-                </div>
-                <div class="deal-field">
-                    <p class="deal-field-label text-xs font-bold uppercase text-gray-500">Booking Time</p>
-                    <select id="modalBookingTime" class="deal-input deal-input-select"></select>
-                </div>
-                <div class="deal-field">
-                    <p class="deal-field-label text-xs font-bold uppercase text-gray-500">Pax</p>
-                    <input id="modalBookingPax" class="deal-input" type="number" min="1" step="1" value="1">
+                <!-- Booking -->
+                <div class="pkg-booking-block">
+                    <p class="pkg-label-v2">Your Booking</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 items-end">
+                        <div class="deal-field">
+                            <p class="deal-field-label text-xs font-bold uppercase text-gray-500">Booking Date</p>
+                            <input id="modalBookingDate" class="deal-input" type="date">
+                        </div>
+                        <div class="deal-field">
+                            <p class="deal-field-label text-xs font-bold uppercase text-gray-500">Booking Time</p>
+                            <select id="modalBookingTime" class="deal-input deal-input-select"></select>
+                        </div>
+                        <div class="deal-field">
+                            <p class="deal-field-label text-xs font-bold uppercase text-gray-500">Pax</p>
+                            <input id="modalBookingPax" class="deal-input" type="number" min="1" step="1" value="1">
+                        </div>
+                    </div>
+                    <p id="modalBookingSummary" class="mt-4 text-sm text-gray-600 font-semibold">Select date, time, and pax to continue your booking.</p>
+                    <button id="confirmPackageBookingBtn" class="mt-4 w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-full font-bold transition-colors">Confirm Booking</button>
                 </div>
             </div>
-            <p id="modalBookingSummary" class="mt-4 text-sm text-gray-600 font-semibold">Select date, time, and pax to continue your booking.</p>
-            <button id="confirmPackageBookingBtn" class="mt-5 w-full bg-orange-500 text-white py-3 rounded-full font-bold">Confirm Booking</button>
         </div>
     </div>
 
@@ -756,41 +1140,81 @@
 
         const packageMetaByTitle = {
             'Private Tour Langkawi': {
-                price: 200,
-                priceLabel: 'RM200 / pax',
-                highlights: ['Fully private trip plan', 'Custom stops and timing', 'Flexible itinerary flow'],
-                includes: ['Private guide', 'Pickup and drop-off', 'Transport support']
+                badge: 'Private Tour',
+                options: [
+                    { id: 'sedan6', name: 'Sedan - 6 Hours', price: 160, bullets: ['Sedan 6 jam', 'Flexible stops', 'Driver included'] },
+                    { id: 'sedan8', name: 'Sedan - 8 Hours', price: 250, bullets: ['Sedan 8 jam', 'Full-day itinerary', 'Driver included'] },
+                    { id: 'mpv6', name: 'MPV - 6 Hours', price: 200, bullets: ['MPV 6 jam', 'Flexible stops', 'Driver included'] },
+                    { id: 'mpv8', name: 'MPV - 8 Hours', price: 350, bullets: ['MPV 8 jam', 'Full-day itinerary', 'Driver included'] }
+                ],
+                highlights: ['Private guide', 'Petrol included', 'Flexible stops', 'Full-day options'],
+                includesText: 'Vehicle | Driver | Petrol',
+                bonus: 'Pickup from airport or hotel',
+                includes: ['Vehicle', 'Driver', 'Fuel']
             },
             'Mangrove Tour': {
-                price: 349,
-                priceLabel: 'RM349 / pax',
-                highlights: ['Mangrove cave exploration', 'Limestone cliff scenery', 'Wildlife and eagle sighting'],
-                includes: ['Boat cruise', 'Nature guide', 'Safety equipment']
+                badge: 'Mangrove Tour',
+                metaLine: 'Multiple Options | River Cruise | Island Highlights',
+                intro: 'Choose your Mangrove package option based on your route and activity preference.',
+                options: [
+                    { id: 'mg_private', name: 'Private Boat (2 Hours)', price: 400, bullets: ['Private boat tour (2 jam)', 'Eagle Watching', 'Kilim river route'] },
+                    { id: 'mg_a', name: 'Package A', price: 350, bullets: ['Eagle Watching', 'Fish Farm', 'Fish Restaurant'] },
+                    { id: 'mg_b', name: 'Package B', price: 550, bullets: ['Eagle Watching', 'River Cruise', 'Monkey Feeding', 'Crocodile Cave', 'Bat Cave', 'Kilim Geopark', 'Andaman Sea', 'Fish Farm'] },
+                    { id: 'mg_c', name: 'Package C', price: 750, bullets: ['Eagle Watching', 'River Cruise', 'Monkey Feeding', 'Crocodile Cave', 'Bat Cave', 'Fish Farm', 'Kilim Geopark', 'Andaman Sea', 'Dangli Island (Fish Feeding)'] },
+                    { id: 'mg_d', name: 'Package D', price: 770, bullets: ['Eagle Watching', 'River Cruise', 'Monkey Feeding', 'Crocodile Cave', 'Bat Cave', 'Fish Farm', 'Kilim Geopark', 'Andaman Sea', 'Dangli Island (Fish Feeding and Snorkeling)', 'Beach Swimming'] }
+                ],
+                highlights: ['Eagle Watching', 'River Cruise', 'Kilim Geopark and Andaman Sea route', 'Fish Farm and island stop options by package tier'],
+                includesText: 'Boat | Guide | Life Jacket',
+                bonus: 'Hotel pickup & drop-off included',
+                includes: ['Boat cruise', 'Nature guide', 'Safety equipment'],
+                price: 400
             },
             'Sunset Cruise': {
-                price: 249,
-                priceLabel: 'RM249 / pax',
-                highlights: ['Golden hour views', 'Sunset photo session', 'Relaxing evening cruise'],
-                includes: ['Cruise ticket', 'Dinner meal', 'Welcome drink']
+                badge: 'Sunset Cruise',
+                options: [
+                    { id: 'sunset_std', name: 'Sunset Cruise', price: 249, bullets: ['2-hour cruise', 'Golden hour views', 'Welcome drink', 'Photo session'] }
+                ],
+                highlights: ['Golden hour views', 'Sunset photo session', 'Relaxing evening cruise', 'Onboard refreshments'],
+                includesText: 'Cruise | Drinks | Snacks',
+                bonus: 'Free welcome drink on boarding',
+                includes: ['Cruise ticket', 'Welcome drink', 'Onboard snacks'],
+                price: 249
             },
             '3 In 1 Activities': {
-                price: 349,
-                priceLabel: 'RM349 / pax',
-                highlights: ['Jet car adventure', 'Parasailing session', 'Banana boat ride'],
-                includes: ['Safety briefing', 'Activity gear', 'Instructor support']
+                badge: 'Water Sports',
+                options: [
+                    { id: '3in1_std', name: '3-in-1 Adventure Package', price: 349, bullets: ['Jet car ride', 'Parasailing session', 'Banana boat ride', 'Safety briefing'] }
+                ],
+                highlights: ['Jet car adventure', 'Parasailing session', 'Banana boat ride', 'Professional instructors'],
+                includesText: 'Jet Car | Parasailing | Banana Boat',
+                bonus: 'Free safety gear & briefing',
+                includes: ['Safety briefing', 'Activity gear', 'Instructor support'],
+                price: 349
             },
             'JetSki Tour Packages': {
-                price: 374.50,
-                priceLabel: 'RM749 / 2 pax',
+                badge: 'Adventure',
+                options: [
+                    { id: 'jetski_2pax', name: 'JetSki Tour (2 Pax)', price: 749, bullets: ['Open-sea route', 'Island checkpoint', 'Certified guide', 'Life jacket provided'] }
+                ],
+                highlights: ['Open-sea route', 'Island checkpoints', 'Guided safe riding route', 'Professional instructor'],
+                includesText: 'Jet Ski | Guide | Life Jacket',
+                bonus: 'Certificate of completion',
+                includes: ['Jet ski unit', 'Certified guide', 'Life jacket'],
                 minPax: 2,
-                highlights: ['Open-sea route', 'Island checkpoints', 'Guided safe riding route'],
-                includes: ['Jet ski unit', 'Certified guide', 'Life jacket']
+                price: 374.50,
+                priceLabel: 'RM749 / 2 pax'
             },
             'ATV Ride': {
+                badge: 'Off-Road',
+                options: [
+                    { id: 'atv_std', name: 'ATV Ride', price: 249, bullets: ['Off-road track', 'Safety helmet', 'Guide assistance', 'Scenic route'] }
+                ],
+                highlights: ['Off-road scenic track', 'Photo and video stops', 'Guided adventure route', 'Safety equipment'],
+                includesText: 'ATV | Helmet | Guide',
+                bonus: 'Free water bottle included',
+                includes: ['ATV unit', 'Safety helmet', 'Guide assistance'],
                 price: 249,
-                priceLabel: 'RM249 / 1 ATV',
-                highlights: ['Off-road scenic track', 'Photo and video stops', 'Guided adventure route'],
-                includes: ['ATV unit', 'Safety helmet', 'Guide assistance']
+                priceLabel: 'RM249 / 1 ATV'
             }
         };
 
@@ -806,6 +1230,7 @@
 
         function getPackageMeta(title) {
             return packageMetaByTitle[title] || {
+                options: [{ id: 'std', name: 'Standard', price: 0, desc: 'Standard Package' }],
                 highlights: ['Top local attractions', 'Great experience flow', 'Best-value itinerary'],
                 includes: ['Guide support', 'Safety briefing', 'Booking assistance']
             };
@@ -969,6 +1394,7 @@
             }
         }
 
+        let currentSubPrice = 0;
         function refreshModalTotal() {
             if (!modalBookingPax || !modalTotalPrice || !modalPackagePrice || !modalBookingSummary) return;
             const meta = getPackageMeta(selectedPackage.title);
@@ -976,25 +1402,122 @@
             let pax = Math.max(minPax, Number(modalBookingPax.value) || minPax);
             modalBookingPax.value = String(pax);
             modalBookingPax.min = String(minPax);
-            const pricePerPax = meta.price || selectedPackage.price || 0;
+            const pricePerPax = typeof currentSubPrice === 'number' && currentSubPrice > 0 ? currentSubPrice : (meta.price || selectedPackage.price || 0);
             const total = pricePerPax * pax;
-            modalPackagePrice.textContent = meta.priceLabel || formatMoney(pricePerPax);
-            modalTotalPrice.textContent = formatMoney(total);
+            modalPackagePrice.textContent = `RM${pricePerPax}`;
+            modalTotalPrice.textContent = `RM${total}`;
+
+            // Update the "Currently selected" indicator
+            const selPriceEl = document.getElementById('pkgSelectionPrice');
+            if (selPriceEl) selPriceEl.textContent = `RM${pricePerPax}`;
 
             const bookingDateText = modalBookingDate && modalBookingDate.value ? modalBookingDate.value : '-';
             const bookingTimeText = modalBookingTime && modalBookingTime.value ? modalBookingTime.value : '-';
-            modalBookingSummary.textContent = `${selectedPackage.title} | Date: ${bookingDateText} | Time: ${bookingTimeText} | ${pax} pax | Total: ${formatMoney(total)}`;
+            modalBookingSummary.textContent = `${selectedPackage.title} | Date: ${bookingDateText} | Time: ${bookingTimeText} | ${pax} pax | Total: RM${total}`;
         }
 
         function openPackageModal(pkg) {
-            if (!packageModalOverlay || !modalPackageTitle || !modalPackageLocation || !modalPackageRating) return;
+            if (!packageModalOverlay || !modalPackageTitle) return;
             const meta = getPackageMeta(pkg.title);
             selectedPackage = { ...pkg, price: meta.price || pkg.price };
+
+            // Header
             modalPackageTitle.textContent = pkg.title;
-            modalPackageLocation.textContent = pkg.location;
-            modalPackageRating.textContent = pkg.rating;
-            renderModalList(modalHighlightsList, meta.highlights);
-            renderModalList(modalIncludesList, meta.includes);
+            const badgeEl = document.getElementById('modalPackageBadge');
+            if (badgeEl) badgeEl.textContent = meta.badge || 'Tour Package';
+
+            // Meta line (e.g., "Multiple Options | River Cruise | Island Highlights")
+            const metaLineEl = document.getElementById('modalPackageMetaLine');
+            if (metaLineEl) {
+                if (meta.metaLine) {
+                    metaLineEl.textContent = meta.metaLine;
+                    metaLineEl.hidden = false;
+                } else {
+                    metaLineEl.hidden = true;
+                }
+            }
+
+            // Intro copy
+            const introEl = document.getElementById('modalPackageIntro');
+            if (introEl) {
+                if (meta.intro) {
+                    introEl.textContent = meta.intro;
+                    introEl.hidden = false;
+                } else {
+                    introEl.hidden = true;
+                }
+            }
+
+            // Hidden compatibility fields
+            if (modalPackageLocation) modalPackageLocation.textContent = pkg.location || '';
+            if (modalPackageRating) modalPackageRating.textContent = pkg.rating || '';
+            renderModalList(modalIncludesList, meta.includes || []);
+
+            // Tour Highlights
+            const highlightsBlock = document.getElementById('pkgHighlightsBlock');
+            if (modalHighlightsList && highlightsBlock) {
+                const hl = meta.highlights || [];
+                if (hl.length > 0) {
+                    renderModalList(modalHighlightsList, hl);
+                    highlightsBlock.style.display = '';
+                } else {
+                    highlightsBlock.style.display = 'none';
+                }
+            }
+
+            // Includes & Bonus text
+            const includesEl = document.getElementById('modalIncludesText');
+            const bonusEl = document.getElementById('modalBonusText');
+            if (includesEl) {
+                includesEl.textContent = meta.includesText || (Array.isArray(meta.includes) ? meta.includes.join(' | ') : '—');
+            }
+            if (bonusEl) {
+                bonusEl.textContent = meta.bonus || '—';
+            }
+
+            // Remove any orphaned container from old code path
+            const orphan = document.getElementById('subPackageContainer');
+            if (orphan) orphan.remove();
+
+            // Render package options as horizontal stacked rows
+            const stack = document.getElementById('pkgOptionsGrid');
+            if (stack) {
+                stack.innerHTML = '';
+                const options = (meta.options && Array.isArray(meta.options) && meta.options.length > 0)
+                    ? meta.options
+                    : [{ id: 'std', name: 'Standard Package', price: meta.price || pkg.price || 0, bullets: [] }];
+
+                options.forEach((opt, idx) => {
+                    const row = document.createElement('div');
+                    row.className = 'pkg-option-row' + (idx === 0 ? ' active' : '');
+                    row.dataset.price = String(opt.price);
+
+                    const bulletsHtml = (opt.bullets || []).map(b => `<li>${b}</li>`).join('');
+
+                    row.innerHTML = `
+                        <div class="pkg-row-top">
+                            <div class="pkg-row-num">${idx + 1}</div>
+                            <div class="pkg-row-name-wrap">
+                                <span class="pkg-row-name">${opt.name}</span>
+                                <span class="pkg-selected-chip-v2">Selected</span>
+                            </div>
+                            <span class="pkg-row-price">RM ${opt.price}</span>
+                        </div>
+                        ${bulletsHtml ? `<ul class="pkg-row-bullets">${bulletsHtml}</ul>` : ''}
+                    `;
+
+                    row.addEventListener('click', () => {
+                        stack.querySelectorAll('.pkg-option-row').forEach(el => el.classList.remove('active'));
+                        row.classList.add('active');
+                        currentSubPrice = opt.price;
+                        refreshModalTotal();
+                    });
+
+                    stack.appendChild(row);
+                    if (idx === 0) currentSubPrice = opt.price;
+                });
+            }
+
             enforceModalDateTime();
             refreshModalTotal();
             packageModalOverlay.hidden = false;
