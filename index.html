@@ -443,6 +443,35 @@
             border-top: 1px solid #e5e7eb;
             padding-top: 1.25rem;
         }
+
+        /* === Mobile fixes for booking inputs (prevent overflow) === */
+        .package-modal .deal-input {
+            width: 100%;
+            min-width: 0;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        .package-modal input[type="date"].deal-input,
+        .package-modal input[type="number"].deal-input {
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .package-modal .deal-field {
+            min-width: 0;
+        }
+        @media (max-width: 480px) {
+            .package-modal .deal-input {
+                font-size: 0.88rem;
+                padding: 0.55rem 0.75rem;
+                min-height: 44px;
+            }
+            .pkg-booking-block .grid {
+                gap: 0.6rem;
+            }
+            .pkg-modal-inner {
+                padding: 1.3rem 1.1rem 1.2rem;
+            }
+        }
         @keyframes heroGlitchJolt {
             0%,
             88%,
@@ -773,7 +802,7 @@
                 <p class="text-gray-500 font-medium italic">Langkawi Islands</p>
                 <div class="flex justify-between items-center mt-5">
                     <span class="text-orange-500 text-lg">★★★★☆</span>
-                    <span class="text-3xl font-extrabold">RM200 <span class="text-base font-medium">/ 6 jam</span></span>
+                    <span class="text-3xl font-extrabold">RM199 <span class="text-base font-medium">/ 6 jam</span></span>
                 </div>
                 <button class="package-view-btn mt-5 w-full bg-orange-500 text-white py-3 rounded-full font-bold">View Deals</button>
             </div>
@@ -785,7 +814,7 @@
                 <p class="text-gray-500 font-medium italic">Kilim Geoforest</p>
                 <div class="flex justify-between items-center mt-5">
                     <span class="text-orange-500 text-lg">★★★★★</span>
-                    <span class="text-3xl font-extrabold">RM349</span>
+                    <span class="text-3xl font-extrabold">RM349 <span class="text-base font-medium">from</span></span>
                 </div>
                 <button class="package-view-btn mt-5 w-full bg-orange-500 text-white py-3 rounded-full font-bold">View Deals</button>
             </div>
@@ -797,7 +826,7 @@
                 <p class="text-gray-500 font-medium italic">Pantai Cenang</p>
                 <div class="flex justify-between items-center mt-5">
                     <span class="text-orange-500 text-lg">★★★★☆</span>
-                    <span class="text-3xl font-extrabold">RM249</span>
+                    <span class="text-3xl font-extrabold">RM248</span>
                 </div>
                 <button class="package-view-btn mt-5 w-full bg-orange-500 text-white py-3 rounded-full font-bold">View Deals</button>
             </div>
@@ -809,7 +838,7 @@
                 <p class="text-gray-500 font-medium italic">Andaman Sea</p>
                 <div class="flex justify-between items-center mt-5">
                     <span class="text-orange-500 text-lg">★★★★★</span>
-                    <span class="text-3xl font-extrabold">RM349</span>
+                    <span class="text-3xl font-extrabold">RM348</span>
                 </div>
                 <button class="package-view-btn mt-5 w-full bg-orange-500 text-white py-3 rounded-full font-bold">View Deals</button>
             </div>
@@ -821,7 +850,7 @@
                 <p class="text-gray-500 font-medium italic">Kuah Town</p>
                 <div class="flex justify-between items-center mt-5">
                     <span class="text-orange-500 text-lg">★★★★☆</span>
-                    <span class="text-3xl font-extrabold">RM749 <span class="text-base font-medium">/ 2 pax</span></span>
+                    <span class="text-3xl font-extrabold">RM748 <span class="text-base font-medium">/ 2 pax</span></span>
                 </div>
                 <button class="package-view-btn mt-5 w-full bg-orange-500 text-white py-3 rounded-full font-bold">View Deals</button>
             </div>
@@ -833,7 +862,7 @@
                 <p class="text-gray-500 font-medium italic">Custom itinerary</p>
                 <div class="flex justify-between items-center mt-5">
                     <span class="text-orange-500 text-lg">★★★★★</span>
-                    <span class="text-3xl font-extrabold">RM249 <span class="text-base font-medium">/ 1 ATV</span></span>
+                    <span class="text-3xl font-extrabold">RM248 <span class="text-base font-medium">/ 1 ATV</span></span>
                 </div>
                 <button class="package-view-btn mt-5 w-full bg-orange-500 text-white py-3 rounded-full font-bold">View Deals</button>
             </div>
@@ -871,19 +900,26 @@
                         <div>
                             <p class="text-xs rental-label mb-1">Type</p>
                             <select id="rentalTypeSelect" class="car-select text-lg">
-                                <option value="avanza">Toyota Avanza</option>
-                                <option value="axia">Perodua Axia</option>
-                                <option value="bezza" selected>Perodua Bezza</option>
-                                <option value="grandstarex">Hyundai Grand Starex</option>
-                                <option value="honda">Honda</option>
-                                <option value="innova">Toyota Innova</option>
-                                <option value="myvi">Perodua Myvi</option>
-                                <option value="myvinew">Perodua Myvi New</option>
-                                <option value="starex">Hyundai Starex</option>
-                                <option value="staria">Hyundai Staria</option>
-                                <option value="veloz">Toyota Veloz</option>
-                                <option value="vios">Toyota Vios</option>
-                                <option value="viosnew">Toyota Vios New</option>
+                                <optgroup label="Car">
+                                    <option value="avanza">Toyota Avanza</option>
+                                    <option value="axia">Perodua Axia</option>
+                                    <option value="bezza" selected>Perodua Bezza</option>
+                                    <option value="grandstarex">Hyundai Grand Starex</option>
+                                    <option value="honda">Honda</option>
+                                    <option value="innova">Toyota Innova</option>
+                                    <option value="myvi">Perodua Myvi</option>
+                                    <option value="myvinew">Perodua Myvi New</option>
+                                    <option value="starex">Hyundai Starex</option>
+                                    <option value="staria">Hyundai Staria</option>
+                                    <option value="veloz">Toyota Veloz</option>
+                                    <option value="vios">Toyota Vios</option>
+                                    <option value="viosnew">Toyota Vios New</option>
+                                </optgroup>
+                                <optgroup label="Motorcycle">
+                                    <option value="hondaadv">Honda ADV (cc160)</option>
+                                    <option value="scooter">Scooter (cc125)</option>
+                                    <option value="yamaha">Yamaha (cc125)</option>
+                                </optgroup>
                             </select>
                         </div>
                         <div>
@@ -975,17 +1011,17 @@
         <div class="max-w-full">            
             <div class="gallery-container overflow-x-auto">
                 <div class="gallery-track min-w-[600px] md:min-w-0">
-                    <img src="https://images.pexels.com/photos/3823488/pexels-photo-3823488.jpeg?auto=compress&cs=tinysrgb&w=600" class="h-80 w-64 object-cover rounded-3xl shadow-lg" alt="Eagle Square Langkawi">
-                    <img src="https://images.pexels.com/photos/1450353/pexels-photo-1450353.jpeg?auto=compress&cs=tinysrgb&w=600" class="h-96 w-64 object-cover rounded-3xl shadow-lg" alt="Langkawi Beach">
-                    <img src="https://images.pexels.com/photos/1005456/pexels-photo-1005456.jpeg?auto=compress&cs=tinysrgb&w=600" class="h-80 w-64 object-cover rounded-3xl shadow-lg" alt="Sky Bridge View">
-                    <img src="https://images.pexels.com/photos/240526/pexels-photo-240526.jpeg?auto=compress&cs=tinysrgb&w=600" class="h-96 w-64 object-cover rounded-3xl shadow-lg" alt="Island Boat">
-                    <img src="https://images.pexels.com/photos/457881/pexels-photo-457881.jpeg?auto=compress&cs=tinysrgb&w=600" class="h-80 w-64 object-cover rounded-3xl shadow-lg" alt="Langkawi Sunset">
+                    <img src="image/t1.jpeg" class="h-80 w-64 object-cover rounded-3xl shadow-lg" alt="Gallery 1">
+                    <img src="image/t2.jpeg" class="h-96 w-64 object-cover rounded-3xl shadow-lg" alt="Gallery 2">
+                    <img src="image/t3.jpeg" class="h-80 w-64 object-cover rounded-3xl shadow-lg" alt="Gallery 3">
+                    <img src="image/t4.jpeg" class="h-96 w-64 object-cover rounded-3xl shadow-lg" alt="Gallery 4">
+                    <img src="image/t5.jpeg" class="h-80 w-64 object-cover rounded-3xl shadow-lg" alt="Gallery 5">
 
-                    <img src="https://images.pexels.com/photos/3823488/pexels-photo-3823488.jpeg?auto=compress&cs=tinysrgb&w=600" class="h-80 w-64 object-cover rounded-3xl shadow-lg" alt="Eagle Square Langkawi">
-                    <img src="https://images.pexels.com/photos/1450353/pexels-photo-1450353.jpeg?auto=compress&cs=tinysrgb&w=600" class="h-96 w-64 object-cover rounded-3xl shadow-lg" alt="Langkawi Beach">
-                    <img src="https://images.pexels.com/photos/1005456/pexels-photo-1005456.jpeg?auto=compress&cs=tinysrgb&w=600" class="h-80 w-64 object-cover rounded-3xl shadow-lg" alt="Sky Bridge View">
-                    <img src="https://images.pexels.com/photos/240526/pexels-photo-240526.jpeg?auto=compress&cs=tinysrgb&w=600" class="h-96 w-64 object-cover rounded-3xl shadow-lg" alt="Island Boat">
-                    <img src="https://images.pexels.com/photos/457881/pexels-photo-457881.jpeg?auto=compress&cs=tinysrgb&w=600" class="h-80 w-64 object-cover rounded-3xl shadow-lg" alt="Langkawi Sunset">
+                    <img src="image/t1.jpeg" class="h-80 w-64 object-cover rounded-3xl shadow-lg" alt="Gallery 1">
+                    <img src="image/t2.jpeg" class="h-96 w-64 object-cover rounded-3xl shadow-lg" alt="Gallery 2">
+                    <img src="image/t3.jpeg" class="h-80 w-64 object-cover rounded-3xl shadow-lg" alt="Gallery 3">
+                    <img src="image/t4.jpeg" class="h-96 w-64 object-cover rounded-3xl shadow-lg" alt="Gallery 4">
+                    <img src="image/t5.jpeg" class="h-80 w-64 object-cover rounded-3xl shadow-lg" alt="Gallery 5">
                 </div>
             </div>
         </div>
@@ -1058,8 +1094,10 @@
                             <select id="modalBookingTime" class="deal-input deal-input-select"></select>
                         </div>
                         <div class="deal-field">
-                            <p class="deal-field-label text-xs font-bold uppercase text-gray-500">Pax</p>
-                            <input id="modalBookingPax" class="deal-input" type="number" min="1" step="1" value="1">
+                            <p class="deal-field-label text-xs font-bold uppercase text-gray-500">No. of Pax</p>
+                            <select id="modalBookingPax" class="deal-input deal-input-select">
+                                <!-- Options will be populated by JS -->
+                            </select>
                         </div>
                     </div>
                     <p id="modalBookingSummary" class="mt-4 text-sm text-gray-600 font-semibold">Select date, time, and pax to continue your booking.</p>
@@ -1069,7 +1107,83 @@
         </div>
     </div>
 
-    <footer class="h-20"></footer>
+    <footer class="bg-[#0a0a0a] text-white mt-16 rounded-t-[3rem] md:rounded-t-[5rem] overflow-hidden">
+        <!-- Top orange accent bar -->
+        <div style="height: 4px; background: linear-gradient(90deg, #fb923c 0%, #f97316 50%, #ea580c 100%);"></div>
+
+        <div class="max-w-7xl mx-auto px-6 md:px-10 py-14 md:py-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8">
+                <!-- Brand column -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="inline-block w-2.5 h-2.5 rounded-full bg-orange-500"></span>
+                        <span class="font-extrabold text-2xl tracking-tight">LangkawiScape</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-md">
+                        Your trusted partner for curated Langkawi experiences. Private tours, island cruises, water sports, and car rentals — all handled end-to-end with local expertise.
+                    </p>
+                    <div class="flex items-center gap-3 mt-6">
+                        <a href="https://wa.me/60123456789" target="_blank" aria-label="WhatsApp" class="w-10 h-10 rounded-full bg-white/10 hover:bg-orange-500 flex items-center justify-center transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652a12.062 12.062 0 005.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.18-1.232-6.165-3.475-8.411l-.005-.039zm-8.47 18.297h-.006a9.876 9.876 0 01-5.03-1.378l-.361-.214-3.742.977.999-3.648-.235-.374a9.86 9.86 0 01-1.514-5.26c0-5.445 4.456-9.882 9.893-9.882 2.647 0 5.127 1.03 6.993 2.898a9.825 9.825 0 012.898 6.99c-.003 5.445-4.458 9.891-9.895 9.891z"/></svg>
+                        </a>
+                        <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white/10 hover:bg-orange-500 flex items-center justify-center transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full bg-white/10 hover:bg-orange-500 flex items-center justify-center transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.408.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.592 1.323-1.325V1.325C24 .593 23.408 0 22.675 0z"/></svg>
+                        </a>
+                        <a href="#" aria-label="TikTok" class="w-10 h-10 rounded-full bg-white/10 hover:bg-orange-500 flex items-center justify-center transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005.8 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1.84-.1z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-sm font-extrabold uppercase tracking-[0.2em] text-orange-500 mb-5">Explore</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#packages" class="text-gray-300 hover:text-orange-400 transition-colors">Tour Packages</a></li>
+                        <li><a href="#rental" class="text-gray-300 hover:text-orange-400 transition-colors">Car Rental</a></li>
+                        <li><a href="#why-us" class="text-gray-300 hover:text-orange-400 transition-colors">Why Choose Us</a></li>
+                        <li><a href="#reviews" class="text-gray-300 hover:text-orange-400 transition-colors">Reviews</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-sm font-extrabold uppercase tracking-[0.2em] text-orange-500 mb-5">Contact</h4>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li class="flex items-start gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            <a href="https://wa.me/60123456789" target="_blank" class="hover:text-orange-400 transition-colors">+60 12-345 6789</a>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            <a href="mailto:hello@langkawiscape.com" class="hover:text-orange-400 transition-colors break-all">hello@langkawiscape.com</a>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <span>Kuah Town, Langkawi,<br>Kedah, Malaysia</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            <span>Open Daily · 8am – 10pm</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom bar -->
+            <div class="mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs text-gray-400">
+                <p>© <span id="footerYear">2026</span> LangkawiScape. All rights reserved.</p>
+                <div class="flex items-center gap-5">
+                    <a href="#" class="hover:text-orange-400 transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-orange-400 transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-orange-400 transition-colors">Refund Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script>
         const carDisplayImage = document.getElementById('carDisplayImage');
         const rentalTypeSelect = document.getElementById('rentalTypeSelect');
@@ -1102,7 +1216,8 @@
             title: '',
             location: '',
             rating: '',
-            price: 0
+            price: 0,
+            optionName: ''
         };
 
         const carImageByType = {
@@ -1111,41 +1226,47 @@
             bezza: 'image/bezza.png',
             grandstarex: 'image/grandstarex.png',
             honda: 'image/honda.png',
+            hondaadv: 'image/hondaadv.png',
             innova: 'image/innova.png',
             myvi: 'image/myvi.png',
             myvinew: 'image/myvinew.png',
+            scooter: 'image/scooter.png',
             starex: 'image/starex.png',
             staria: 'image/staria.png',
             veloz: 'image/veloz.png',
             vios: 'image/vios.png',
-            viosnew: 'image/viosnew.png'
+            viosnew: 'image/viosnew.png',
+            yamaha: 'image/yamaha.png'
         };
 
         // Rates based on your provided rental price list (24-hour / unit)
         const carRateByType = {
-            avanza: { low: 120, peak: 150 },
-            axia: { low: 80, peak: 100 },
-            bezza: { low: 100, peak: 120 },
-            grandstarex: { low: 400, peak: 450 },
-            honda: { low: 120, peak: 150 },
-            innova: { low: 200, peak: 250 },
-            myvi: { low: 100, peak: 120 },
-            myvinew: { low: 100, peak: 120 },
-            starex: { low: 400, peak: 450 },
-            staria: { low: 450, peak: 500 },
-            veloz: { low: 150, peak: 180 },
-            vios: { low: 120, peak: 150 },
-            viosnew: { low: 150, peak: 170 }
+            avanza: { low: 119, peak: 149 },
+            axia: { low: 79, peak: 99 },
+            bezza: { low: 99, peak: 119 },
+            grandstarex: { low: 399, peak: 449 },
+            honda: { low: 119, peak: 149 },
+            hondaadv: { low: 79, peak: 79 }, // cc160
+            scooter: { low: 49, peak: 49 }, // cc125
+            yamaha: { low: 49, peak: 49 }, // cc125
+            innova: { low: 199, peak: 249 },
+            myvi: { low: 99, peak: 119 },
+            myvinew: { low: 99, peak: 119 },
+            starex: { low: 399, peak: 449 },
+            staria: { low: 449, peak: 499 },
+            veloz: { low: 149, peak: 179 },
+            vios: { low: 119, peak: 149 },
+            viosnew: { low: 149, peak: 169 }
         };
 
         const packageMetaByTitle = {
             'Private Tour Langkawi': {
                 badge: 'Private Tour',
                 options: [
-                    { id: 'sedan6', name: 'Sedan - 6 Hours', price: 160, bullets: ['Sedan 6 jam', 'Flexible stops', 'Driver included'] },
-                    { id: 'sedan8', name: 'Sedan - 8 Hours', price: 250, bullets: ['Sedan 8 jam', 'Full-day itinerary', 'Driver included'] },
-                    { id: 'mpv6', name: 'MPV - 6 Hours', price: 200, bullets: ['MPV 6 jam', 'Flexible stops', 'Driver included'] },
-                    { id: 'mpv8', name: 'MPV - 8 Hours', price: 350, bullets: ['MPV 8 jam', 'Full-day itinerary', 'Driver included'] }
+                    { id: 'sedan6', name: 'Sedan - 6 Hours', price: 159, bullets: ['Sedan 6 jam', 'Flexible stops', 'Driver included'] },
+                    { id: 'sedan8', name: 'Sedan - 8 Hours', price: 249, bullets: ['Sedan 8 jam', 'Full-day itinerary', 'Driver included'] },
+                    { id: 'mpv6', name: 'MPV - 6 Hours', price: 199, bullets: ['MPV 6 jam', 'Flexible stops', 'Driver included'] },
+                    { id: 'mpv8', name: 'MPV - 8 Hours', price: 349, bullets: ['MPV 8 jam', 'Full-day itinerary', 'Driver included'] }
                 ],
                 highlights: ['Private guide', 'Petrol included', 'Flexible stops', 'Full-day options'],
                 includesText: 'Vehicle | Driver | Petrol',
@@ -1157,64 +1278,64 @@
                 metaLine: 'Multiple Options | River Cruise | Island Highlights',
                 intro: 'Choose your Mangrove package option based on your route and activity preference.',
                 options: [
-                    { id: 'mg_private', name: 'Private Boat (2 Hours)', price: 400, bullets: ['Private boat tour (2 jam)', 'Eagle Watching', 'Kilim river route'] },
-                    { id: 'mg_a', name: 'Package A', price: 350, bullets: ['Eagle Watching', 'Fish Farm', 'Fish Restaurant'] },
-                    { id: 'mg_b', name: 'Package B', price: 550, bullets: ['Eagle Watching', 'River Cruise', 'Monkey Feeding', 'Crocodile Cave', 'Bat Cave', 'Kilim Geopark', 'Andaman Sea', 'Fish Farm'] },
-                    { id: 'mg_c', name: 'Package C', price: 750, bullets: ['Eagle Watching', 'River Cruise', 'Monkey Feeding', 'Crocodile Cave', 'Bat Cave', 'Fish Farm', 'Kilim Geopark', 'Andaman Sea', 'Dangli Island (Fish Feeding)'] },
-                    { id: 'mg_d', name: 'Package D', price: 770, bullets: ['Eagle Watching', 'River Cruise', 'Monkey Feeding', 'Crocodile Cave', 'Bat Cave', 'Fish Farm', 'Kilim Geopark', 'Andaman Sea', 'Dangli Island (Fish Feeding and Snorkeling)', 'Beach Swimming'] }
+                    { id: 'mg_private', name: 'Private Boat (2 Hours)', price: 399, bullets: ['Private boat tour (2 jam)', 'Eagle Watching', 'Kilim river route'] },
+                    { id: 'mg_a', name: 'Package A', price: 349, bullets: ['Eagle Watching', 'Fish Farm', 'Fish Restaurant'] },
+                    { id: 'mg_b', name: 'Package B', price: 549, bullets: ['Eagle Watching', 'River Cruise', 'Monkey Feeding', 'Crocodile Cave', 'Bat Cave', 'Kilim Geopark', 'Andaman Sea', 'Fish Farm'] },
+                    { id: 'mg_c', name: 'Package C', price: 749, bullets: ['Eagle Watching', 'River Cruise', 'Monkey Feeding', 'Crocodile Cave', 'Bat Cave', 'Fish Farm', 'Kilim Geopark', 'Andaman Sea', 'Dangli Island (Fish Feeding)'] },
+                    { id: 'mg_d', name: 'Package D', price: 769, bullets: ['Eagle Watching', 'River Cruise', 'Monkey Feeding', 'Crocodile Cave', 'Bat Cave', 'Fish Farm', 'Kilim Geopark', 'Andaman Sea', 'Dangli Island (Fish Feeding and Snorkeling)', 'Beach Swimming'] }
                 ],
                 highlights: ['Eagle Watching', 'River Cruise', 'Kilim Geopark and Andaman Sea route', 'Fish Farm and island stop options by package tier'],
                 includesText: 'Boat | Guide | Life Jacket',
                 bonus: 'Hotel pickup & drop-off included',
                 includes: ['Boat cruise', 'Nature guide', 'Safety equipment'],
-                price: 400
+                price: 399
             },
             'Sunset Cruise': {
                 badge: 'Sunset Cruise',
                 options: [
-                    { id: 'sunset_std', name: 'Sunset Cruise', price: 249, bullets: ['2-hour cruise', 'Golden hour views', 'Welcome drink', 'Photo session'] }
+                    { id: 'sunset_std', name: 'Sunset Cruise', price: 248, bullets: ['2-hour cruise', 'Golden hour views', 'Welcome drink', 'Photo session'] }
                 ],
                 highlights: ['Golden hour views', 'Sunset photo session', 'Relaxing evening cruise', 'Onboard refreshments'],
                 includesText: 'Cruise | Drinks | Snacks',
                 bonus: 'Free welcome drink on boarding',
                 includes: ['Cruise ticket', 'Welcome drink', 'Onboard snacks'],
-                price: 249
+                price: 248
             },
             '3 In 1 Activities': {
                 badge: 'Water Sports',
                 options: [
-                    { id: '3in1_std', name: '3-in-1 Adventure Package', price: 349, bullets: ['Jet car ride', 'Parasailing session', 'Banana boat ride', 'Safety briefing'] }
+                    { id: '3in1_std', name: '3-in-1 Adventure Package', price: 348, bullets: ['Jet car ride', 'Parasailing session', 'Banana boat ride', 'Safety briefing'] }
                 ],
                 highlights: ['Jet car adventure', 'Parasailing session', 'Banana boat ride', 'Professional instructors'],
                 includesText: 'Jet Car | Parasailing | Banana Boat',
                 bonus: 'Free safety gear & briefing',
                 includes: ['Safety briefing', 'Activity gear', 'Instructor support'],
-                price: 349
+                price: 348
             },
             'JetSki Tour Packages': {
                 badge: 'Adventure',
                 options: [
-                    { id: 'jetski_2pax', name: 'JetSki Tour (2 Pax)', price: 749, bullets: ['Open-sea route', 'Island checkpoint', 'Certified guide', 'Life jacket provided'] }
+                    { id: 'jetski_2pax', name: 'JetSki Tour (2 Pax)', price: 748, bullets: ['Open-sea route', 'Island checkpoint', 'Certified guide', 'Life jacket provided'] }
                 ],
                 highlights: ['Open-sea route', 'Island checkpoints', 'Guided safe riding route', 'Professional instructor'],
                 includesText: 'Jet Ski | Guide | Life Jacket',
                 bonus: 'Certificate of completion',
                 includes: ['Jet ski unit', 'Certified guide', 'Life jacket'],
                 minPax: 2,
-                price: 374.50,
-                priceLabel: 'RM749 / 2 pax'
+                price: 374.00,
+                priceLabel: 'RM748 / 2 pax'
             },
             'ATV Ride': {
                 badge: 'Off-Road',
                 options: [
-                    { id: 'atv_std', name: 'ATV Ride', price: 249, bullets: ['Off-road track', 'Safety helmet', 'Guide assistance', 'Scenic route'] }
+                    { id: 'atv_std', name: 'ATV Ride', price: 248, bullets: ['Off-road track', 'Safety helmet', 'Guide assistance', 'Scenic route'] }
                 ],
                 highlights: ['Off-road scenic track', 'Photo and video stops', 'Guided adventure route', 'Safety equipment'],
                 includesText: 'ATV | Helmet | Guide',
                 bonus: 'Free water bottle included',
                 includes: ['ATV unit', 'Safety helmet', 'Guide assistance'],
-                price: 249,
-                priceLabel: 'RM249 / 1 ATV'
+                price: 248,
+                priceLabel: 'RM248 / 1 ATV'
             }
         };
 
@@ -1360,22 +1481,49 @@
 
         function populateModalBookingTimes(minMins) {
             if (!modalBookingTime) return;
-            const safeMin = (minMins !== undefined) ? Math.max(0, Math.min(1380, minMins)) : 0;
-            const prevValue = modalBookingTime.value || '10:00';
-            modalBookingTime.innerHTML = '';
+            let allowedTimes = [];
+            // Special case for Sunset Cruise
+            if (selectedPackage && selectedPackage.title && selectedPackage.title.toLowerCase().includes('sunset cruise')) {
+                allowedTimes = ['16:00'];
+            } else {
+                allowedTimes = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00'];
+            }
 
-            for (let mins = safeMin; mins <= 1380; mins += 60) {
+            // If booking is today, filter out past times
+            const { date: today, time: nowTime } = getNowLocalDateTimeParts();
+            let filteredTimes = allowedTimes;
+            if (modalBookingDate && modalBookingDate.value === today) {
+                const nowHour = parseInt(nowTime.split(':')[0], 10);
+                filteredTimes = allowedTimes.filter(t => parseInt(t.split(':')[0], 10) >= nowHour);
+                // If all times are past, fallback to allowedTimes (so user can still see something)
+                if (filteredTimes.length === 0) filteredTimes = allowedTimes;
+            }
+
+            // Default to current hour if available, else next available
+            let defaultTime = filteredTimes[0];
+            if (modalBookingDate && modalBookingDate.value === today) {
+                const nowHour = parseInt(nowTime.split(':')[0], 10);
+                const match = filteredTimes.find(t => parseInt(t.split(':')[0], 10) === nowHour);
+                if (match) defaultTime = match;
+                else {
+                    // Next available
+                    const next = filteredTimes.find(t => parseInt(t.split(':')[0], 10) > nowHour);
+                    if (next) defaultTime = next;
+                }
+            }
+
+            const prevValue = modalBookingTime.value || defaultTime;
+            modalBookingTime.innerHTML = '';
+            filteredTimes.forEach((value) => {
                 const option = document.createElement('option');
-                const value = minutesToTime(mins);
                 option.value = value;
                 option.textContent = value;
                 modalBookingTime.appendChild(option);
-            }
-
-            if (prevValue && timeToMinutes(prevValue) >= safeMin) {
+            });
+            if (filteredTimes.includes(prevValue)) {
                 modalBookingTime.value = prevValue;
             } else {
-                modalBookingTime.selectedIndex = 0;
+                modalBookingTime.value = defaultTime;
             }
         }
 
@@ -1399,9 +1547,18 @@
             if (!modalBookingPax || !modalTotalPrice || !modalPackagePrice || !modalBookingSummary) return;
             const meta = getPackageMeta(selectedPackage.title);
             const minPax = meta.minPax || 1;
+            // Populate dropdown if not already
+            if (modalBookingPax.tagName === 'SELECT' && modalBookingPax.options.length < 15) {
+                modalBookingPax.innerHTML = '';
+                for (let i = minPax; i <= 15; i++) {
+                    const opt = document.createElement('option');
+                    opt.value = i;
+                    opt.textContent = i;
+                    modalBookingPax.appendChild(opt);
+                }
+            }
             let pax = Math.max(minPax, Number(modalBookingPax.value) || minPax);
             modalBookingPax.value = String(pax);
-            modalBookingPax.min = String(minPax);
             const pricePerPax = typeof currentSubPrice === 'number' && currentSubPrice > 0 ? currentSubPrice : (meta.price || selectedPackage.price || 0);
             const total = pricePerPax * pax;
             modalPackagePrice.textContent = `RM${pricePerPax}`;
@@ -1510,14 +1667,23 @@
                         stack.querySelectorAll('.pkg-option-row').forEach(el => el.classList.remove('active'));
                         row.classList.add('active');
                         currentSubPrice = opt.price;
+                        selectedPackage.optionName = opt.name;
                         refreshModalTotal();
                     });
 
                     stack.appendChild(row);
-                    if (idx === 0) currentSubPrice = opt.price;
+                    if (idx === 0) {
+                        currentSubPrice = opt.price;
+                        selectedPackage.optionName = opt.name;
+                    }
                 });
             }
 
+            // Set booking date to today by default
+            if (modalBookingDate) {
+                const { date: today } = getNowLocalDateTimeParts();
+                modalBookingDate.value = today;
+            }
             enforceModalDateTime();
             refreshModalTotal();
             packageModalOverlay.hidden = false;
@@ -1640,8 +1806,8 @@
                 const ret = returnDate && returnTime ? `${returnDate.value} ${returnTime.value}` : '-';
                 const rate = rentalTypeSelect ? carRateByType[rentalTypeSelect.value] : null;
                 const rateText = rate ? `Low RM${rate.low.toFixed(2)} / Peak RM${rate.peak.toFixed(2)} per day` : '';
-                const msg = `Hello LangkawiScape! I'd like to book a car rental:\n\n🚗 Car: ${typeLabel}\n📅 Pickup: ${pickup}\n📅 Return: ${ret}\n💰 Rate: ${rateText}\n\nPlease confirm availability. Thank you!`;
-                window.open(`https://wa.me/60123456789?text=${encodeURIComponent(msg)}`, '_blank');
+                const msg = `Hello LangkawiScape! I would like to book a rental:\n\nVehicle: ${typeLabel}\nPickup: ${pickup}\nReturn: ${ret}\nRate: ${rateText}\n\nPlease confirm availability. Thank you!`;
+                window.open(`https://wa.me/60134480808?text=${encodeURIComponent(msg)}`, '_blank');
             });
         }
 
@@ -1666,8 +1832,74 @@
             });
         }
 
+        // WhatsApp chat for package booking: only date, time, pax, total price
+        if (confirmPackageBookingBtn) {
+            confirmPackageBookingBtn.onclick = function() {
+                const date = modalBookingDate && modalBookingDate.value ? modalBookingDate.value : '-';
+                const time = modalBookingTime && modalBookingTime.value ? modalBookingTime.value : '-';
+                const pax = modalBookingPax && modalBookingPax.value ? modalBookingPax.value : '-';
+                const total = modalTotalPrice && modalTotalPrice.textContent ? modalTotalPrice.textContent : '-';
+                // Get selected package and option name
+                let packageName = selectedPackage && selectedPackage.title ? selectedPackage.title : '-';
+                let optionName = selectedPackage && selectedPackage.optionName ? selectedPackage.optionName : '';
+                let optionDetails = '';
+                // Try to get details/desc for the selected option
+                if (packageMetaByTitle[packageName] && Array.isArray(packageMetaByTitle[packageName].options) && optionName) {
+                    const found = packageMetaByTitle[packageName].options.find(opt => opt.name === optionName);
+                    if (found && found.desc) optionDetails = `\nOption Details: ${found.desc}`;
+                }
+                // Always show package and option in details (e.g., Mangrove Tour (Pakej A))
+                let packageLine = `Package: ${packageName}`;
+                if (optionName) packageLine += ` (${optionName})`;
+                const msg = `Hi! I want to book with LangkawiScape:\n\n${packageLine}${optionDetails}\nDate: ${date}\nTime: ${time}\nNo. of Pax: ${pax}\nTotal: ${total}`;
+                window.open(`https://wa.me/60134480808?text=${encodeURIComponent(msg)}`, '_blank');
+            };
+        }
+
         if (closePackageModalBtn) {
             closePackageModalBtn.addEventListener('click', closePackageModal);
+        }
+
+        // Confirm booking → WhatsApp
+        if (confirmPackageBookingBtn) {
+            confirmPackageBookingBtn.addEventListener('click', () => {
+                const meta = getPackageMeta(selectedPackage.title);
+                const minPax = meta.minPax || 1;
+                const pax = Math.max(minPax, Number(modalBookingPax && modalBookingPax.value) || minPax);
+                const dateVal = modalBookingDate && modalBookingDate.value ? modalBookingDate.value : '';
+                const timeVal = modalBookingTime && modalBookingTime.value ? modalBookingTime.value : '';
+
+                if (!dateVal || !timeVal) {
+                    if (modalBookingSummary) {
+                        modalBookingSummary.textContent = 'Please select booking date and time before confirming.';
+                        modalBookingSummary.style.color = '#dc2626';
+                    }
+                    return;
+                }
+                if (modalBookingSummary) modalBookingSummary.style.color = '';
+
+                const pricePerPax = typeof currentSubPrice === 'number' && currentSubPrice > 0
+                    ? currentSubPrice
+                    : (meta.price || selectedPackage.price || 0);
+                const total = pricePerPax * pax;
+                const optLabel = selectedPackage.optionName || 'Standard Package';
+                const includesLine = meta.includesText || (Array.isArray(meta.includes) ? meta.includes.join(' | ') : '');
+                const bonusLine = meta.bonus || '';
+
+                let msg = `Hello LangkawiScape! I'd like to book a tour package:\n\n`;
+                msg += `🎯 Package: ${selectedPackage.title}\n`;
+                msg += `📦 Option: ${optLabel}\n`;
+                msg += `📅 Date: ${dateVal}\n`;
+                msg += `⏰ Time: ${timeVal}\n`;
+                msg += `👥 Pax: ${pax}\n`;
+                msg += `💰 Price: RM${pricePerPax} / pax\n`;
+                msg += `💵 Total: RM${total}\n`;
+                if (includesLine) msg += `\n✅ Includes: ${includesLine}`;
+                if (bonusLine) msg += `\n🎁 Bonus: ${bonusLine}`;
+                msg += `\n\nPlease confirm availability. Thank you!`;
+
+                window.open(`https://wa.me/60123456789?text=${encodeURIComponent(msg)}`, '_blank');
+            });
         }
 
         if (packageModalOverlay) {
@@ -1745,10 +1977,19 @@
             }
         }
 
+        // Set rental pickup date to today by default
+        if (pickupDate) {
+            const { date: today } = getNowLocalDateTimeParts();
+            pickupDate.value = today;
+        }
         enforceMinDateTimeConstraints();
         enforceModalDateTime();
         updateRateInfo();
         updateRentalFeedback();
+
+        // Footer year
+        const footerYear = document.getElementById('footerYear');
+        if (footerYear) footerYear.textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
